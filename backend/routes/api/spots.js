@@ -45,6 +45,7 @@ router.get('/', async (req, res) => {
         delete obj['SpotImages'];
 
     })
+
     return res.json({ "Spots": spotList })
 })
 
@@ -92,6 +93,9 @@ router.get('/current', async (req,res)=>{
             delete obj['SpotImages'];
 
         })
+        if (!spotList.length){
+            return res.json({"message":"Spot couldn't be found"})
+        }
         return res.json({ "Spots": spotList })
     } else return res.json({user: null})
 
