@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Review.hasOne(models.ReviewImage, {foreignKey:'reviewId'})
+      Review.belongsTo(models.User, {foreignKey:"userId"})
+      Review.belongsTo(models.Spots, {foreignKey:"spotId"})
     }
   }
   Review.init({
