@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     address: {
       type:DataTypes.STRING,
+      allowNull: false,
       unique: true,
-      allowNull: false
     },
     city: {
       type:DataTypes.STRING,
@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     state: {
       type:DataTypes.STRING,
+      allowNull:true
     },
     country: {
       type:DataTypes.STRING,
@@ -39,23 +40,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     lat: {
       type:DataTypes.DECIMAL,
-      validate: {
-      isValidLat(value){
-        if (value < -90 || value > 90){
-          throw new Error('Enter a valid Latitude')
-        }
-      }
-      }
     },
     lng: {
       type:DataTypes.DECIMAL,
-      validate: {
-        isValidLng(value){
-          if (value < -180 || value > 180){
-            throw new Error('Enter a valid Longitude')
-          }
-        }
-      }
     },
     name: {
       type:DataTypes.STRING,
@@ -63,13 +50,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type:DataTypes.STRING,
-      validate: {
-        len: [1,250]
     },
     price: {
       type:DataTypes.DECIMAL
       }
-    }
   }, {
     sequelize,
     modelName: 'Spot',
