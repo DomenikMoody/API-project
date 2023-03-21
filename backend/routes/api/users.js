@@ -1,5 +1,5 @@
 // backend/routes/api/users.js
-const express = require('express')
+const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const { check } = require('express-validator');
