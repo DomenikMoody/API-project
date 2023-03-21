@@ -16,6 +16,9 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Spots'
+        }
       },
       url: {
         type: Sequelize.STRING,
@@ -37,7 +40,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = 'SpotImages'
+    options.tableName = 'Spots'
     await queryInterface.dropTable(options);
   }
 };
