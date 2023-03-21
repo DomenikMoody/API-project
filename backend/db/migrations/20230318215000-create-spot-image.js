@@ -17,7 +17,7 @@ module.exports = {
       spotId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Spots"
+          model: 'Spots'
         }
       },
       url: {
@@ -40,7 +40,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "SpotImages"
+    options.tableName = 'SpotImages'
     await queryInterface.dropTable(options);
   }
 };
