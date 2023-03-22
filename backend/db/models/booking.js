@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       references:{
         model: "Spots"
-      }
+      },
     },
     userId: {
       type:DataTypes.INTEGER,

@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Spot.belongsTo(models.User, {foreignKey:'ownerId'});
-      Spot.hasMany(models.Booking, {foreignKey: 'spotId'})
-      Spot.hasMany(models.SpotImage, {foreignKey: 'spotId'});
-      Spot.hasMany(models.Review, {foreignKey: 'spotId'})
+      Spot.hasMany(models.Booking, {foreignKey: 'spotId', onDelete: "cascade", hooks: "true"} )
+      Spot.hasMany(models.SpotImage, {foreignKey: 'spotId', onDelete: "cascade", hooks: "true"});
+      Spot.hasMany(models.Review, {foreignKey: 'spotId', onDelete: "cascade", hooks: "true"})
     }
   }
   Spot.init({
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       references: {
         model: 'Users'
-      }
+      },
     },
     address: {
       type:DataTypes.STRING,
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     state: {
       type:DataTypes.STRING,
-      allowNull:true
+      allowNull:false
     },
     country: {
       type:DataTypes.STRING,
@@ -46,13 +46,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type:DataTypes.STRING,
-      allowNull:false
+      allowNull:false,
     },
     description: {
       type:DataTypes.STRING,
+      allowNull:false
     },
     price: {
-      type:DataTypes.DECIMAL
+      type:DataTypes.DECIMAL,
+      allowNull: false
       }
   }, {
     sequelize,
