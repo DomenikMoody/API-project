@@ -240,7 +240,7 @@ router.post('/:spotId/images', async (req, res) => {
     const { url, preview } = req.body
     const spot = await Spot.findAll({
         where: {
-            Id: req.params.spotId
+            id: req.params.spotId
         }
     })
     if (!spot.length){
