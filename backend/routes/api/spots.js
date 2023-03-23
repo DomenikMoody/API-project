@@ -100,7 +100,14 @@ router.get('/current', async (req, res) => {
             return res.json({ "message": "Spot couldn't be found" })
         }
         return res.json({ "Spots": spotList })
-    } else return res.json({ user: null })
+    } else {
+        res.status(403)
+        return res.json({
+        "message": "Forbidden"})
+    }
+
+
+
 
 
 })
@@ -221,6 +228,10 @@ router.post('/', async (req, res) => {
                 name: name
             }
         }))
+    } else {
+        res.status(403)
+        return res.json({
+        "message": "Forbidden"})
     }
 })
 
@@ -326,6 +337,12 @@ router.put('/:spotId', async (req,res)=>{
             return res.json(spot)
         }
 
+    } else {
+        {
+            res.status(403)
+            return res.json({
+            "message": "Forbidden"})
+        }
     }
 })
 
@@ -345,6 +362,10 @@ router.delete('/:spotId', async (req, res)=>{
                 "message": "Successfully deleted"
               })
         }
+    } else {
+        res.status(403)
+        return res.json({
+        "message": "Forbidden"})
     }
 
 })
