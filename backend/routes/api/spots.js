@@ -338,11 +338,9 @@ router.put('/:spotId', async (req,res)=>{
         }
 
     } else {
-        {
             res.status(403)
             return res.json({
             "message": "Forbidden"})
-        }
     }
 })
 
