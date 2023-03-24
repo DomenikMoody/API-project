@@ -5,6 +5,7 @@ const { Spot } = require('../../db/models');
 const { Review } = require('../../db/models');
 const { SpotImage } = require('../../db/models');
 const { User } = require('../../db/models');
+const { ReviewImage } = require('../../db/models')
 
 
 const router = express.Router();
@@ -37,9 +38,11 @@ router.get('/', async (req, res) => {
         }
         let url = ""
         element.SpotImages.forEach(spot => {
-            url += spot.url
+            if (spot.preview) {
+                url += spot.url
+            }
+            element.previewImage = url
         })
-        element.previewImage = url
 
     })
     spotList.forEach(obj => {
@@ -86,8 +89,13 @@ router.get('/current', async (req, res) => {
             let url = ""
             element.SpotImages.forEach(spot => {
                 url += spot.url
+                if (spot.preview === true) {
+                    element.previewImage = url
+                } else {
+                    element.previewImage = null
+                }
             })
-            element.previewImage = url
+
 
         })
         spotList.forEach(obj => {
@@ -103,7 +111,8 @@ router.get('/current', async (req, res) => {
     } else {
         res.status(403)
         return res.json({
-        "message": "Forbidden"})
+            "message": "Forbidden"
+        })
     }
 
 
@@ -231,7 +240,8 @@ router.post('/', async (req, res) => {
     } else {
         res.status(403)
         return res.json({
-        "message": "Forbidden"})
+            "message": "Forbidden"
+        })
     }
 })
 
@@ -243,7 +253,7 @@ router.post('/:spotId/images', async (req, res) => {
             id: req.params.spotId
         }
     })
-    if (!spot.length){
+    if (!spot.length) {
         res.status(404)
         return res.json({ "message": "Spot couldn't be found" })
     }
@@ -266,24 +276,24 @@ router.post('/:spotId/images', async (req, res) => {
         spotPics.forEach(spot => {
             spotList.push(spot.toJSON())
         })
-        spotList.forEach(element=>{
+        spotList.forEach(element => {
             delete element['createdAt'];
             delete element['updatedAt'];
             delete element['spotId']
         })
-           return res.json(...spotList)
-        }
+        return res.json(...spotList)
+    }
 })
 
-router.put('/:spotId', async (req,res)=>{
-    const {address, city, state, country, lat, lng, name, description,price} = req.body
-    const {user} = req
+router.put('/:spotId', async (req, res) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const { user } = req
     const spot = await Spot.findByPk(req.params.spotId);
-    if (!spot){
+    if (!spot) {
         res.status(404)
         res.json({
             "message": "Spot couldn't be found"
-          })
+        })
     }
     let error = {}
     if (!address) {
@@ -320,8 +330,8 @@ router.put('/:spotId', async (req,res)=>{
             "errors": error
         })
     }
-    if (user){
-        if (user.id === spot.ownerId){
+    if (user) {
+        if (user.id === spot.ownerId) {
             spot.address = address
             spot.city = city
             spot.state = state
@@ -338,35 +348,130 @@ router.put('/:spotId', async (req,res)=>{
         }
 
     } else {
-            res.status(403)
-            return res.json({
-            "message": "Forbidden"})
+        res.status(403)
+        return res.json({
+            "message": "Forbidden"
+        })
     }
 })
 
-router.delete('/:spotId', async (req, res)=>{
-    const {user} = req
+router.delete('/:spotId', async (req, res) => {
+    const { user } = req
     const spot = await Spot.findByPk(req.params.spotId);
-    if(!spot){
+    if (!spot) {
         res.status(404)
         return res.json({
             "message": "Spot couldn't be found"
-          })
+        })
     }
-    if (user){
-        if (user.id === spot.ownerId){
+    if (user) {
+        if (user.id === spot.ownerId) {
             await spot.destroy()
             return res.json({
                 "message": "Successfully deleted"
-              })
+            })
         }
     } else {
         res.status(403)
         return res.json({
-        "message": "Forbidden"})
+            "message": "Forbidden"
+        })
     }
 
 })
 
+router.get('/:spotId/reviews', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    if (!spot) {
+        res.status(404)
+        return res.json({
+            "message": "Spot couldn't be found"
+        })
+    } else {
+        const allReviews = await Review.findAll({
+            where: {
+                spotId: spot.id
+            },
+            include: [
+                {
+                    model: User
+                },
+                {
+                    model: ReviewImage
+                }
+            ]
+        })
+        let reviewList = []
+        allReviews.forEach(review => {
+            reviewList.push(review.toJSON())
+        })
+        reviewList.forEach(element => {
+            delete element.User['username']
+            element.ReviewImages.forEach(part => {
+                delete part['reviewId']
+                delete part['createdAt']
+                delete part['updatedAt']
+            })
+        })
+        res.json({ "Reviews": reviewList })
+    }
+})
+router.post('/:spotId/reviews', async (req, res) => {
+    const { user } = req
+    const { review, stars } = req.body
+    const spot = await Spot.findByPk(req.params.spotId)
+    if (!spot) {
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found"
+        })
+    }
+
+    let error = {}
+    if (user) {
+        if (!review || review.length < 1) {
+            error.review = "Review text is required"
+        }
+        if (!stars || stars < 1 || stars > 5) {
+            error.stars = "Stars must be an integer from 1 to 5"
+        }
+        if (Object.keys(error).length > 0) {
+            res.status(400)
+            res.json({
+                "message": "Bad Request",
+                "error": error
+            })
+        }
+    let array = []
+    const allReviews = await Review.findAll({
+        where: {
+            spotId: req.params.spotId
+        }
+    })
+    allReviews.forEach(review =>{
+        array.push(review.userId)
+    })
+    if (array.includes(user.id)){
+        res.status(404)
+        return res.json({
+            "message": "User already has a review for this spot"
+          })
+    }
+        const newReview = await Review.create({
+            userId: user.id,
+            spotId: req.params.spotId,
+            review: review,
+            stars: stars
+        })
+
+        return res.json(newReview)
+
+    } else {
+        res.status(401)
+        return res.json({
+            "message": "Authentication required"
+        })
+    }
+})
 module.exports = router;
 //comment
