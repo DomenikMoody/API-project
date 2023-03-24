@@ -1,11 +1,8 @@
 const { query } = require('express');
 const express = require('express');
 const { QueryInterface } = require('sequelize');
-const { Spot } = require('../../db/models');
-const { Review } = require('../../db/models');
-const { SpotImage } = require('../../db/models');
-const { User } = require('../../db/models');
-const { ReviewImage } = require('../../db/models')
+const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
 
 
 const router = express.Router();
@@ -55,7 +52,7 @@ router.get('/', async (req, res) => {
 })
 
 
-router.get('/current', async (req, res) => {
+router.get('/current', requireAuth, async (req, res) => {
     const { user } = req
     if (user) {
         const ownedSpot = await Spot.findAll({
@@ -108,17 +105,7 @@ router.get('/current', async (req, res) => {
             return res.json({ "message": "Spot couldn't be found" })
         }
         return res.json({ "Spots": spotList })
-    } else {
-        res.status(403)
-        return res.json({
-            "message": "Forbidden"
-        })
     }
-
-
-
-
-
 })
 
 router.get('/:spotId', async (req, res) => {
@@ -179,7 +166,7 @@ router.get('/:spotId', async (req, res) => {
     return res.json(spotList)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', requireAuth, async (req, res) => {
     const { user } = req
     const { address, city, state, country, lat, lng, name, description, price, } = req.body
     let error = {}
@@ -237,11 +224,6 @@ router.post('/', async (req, res) => {
                 name: name
             }
         }))
-    } else {
-        res.status(403)
-        return res.json({
-            "message": "Forbidden"
-        })
     }
 })
 
@@ -266,6 +248,9 @@ router.post('/:spotId/images', async (req, res) => {
                 url: url,
                 preview: preview
             })
+        } else {
+            res.status(403)
+            res.json({ "message": "Forbidden" })
         }
         const spotPics = await SpotImage.findAll({
             where: {
@@ -285,7 +270,7 @@ router.post('/:spotId/images', async (req, res) => {
     }
 })
 
-router.put('/:spotId', async (req, res) => {
+router.put('/:spotId', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     const { user } = req
     const spot = await Spot.findByPk(req.params.spotId);
@@ -345,17 +330,16 @@ router.put('/:spotId', async (req, res) => {
             await spot.save()
 
             return res.json(spot)
+        } else {
+            res.status(403)
+            return res.json({
+                "message": "Forbidden"
+            })
         }
-
-    } else {
-        res.status(403)
-        return res.json({
-            "message": "Forbidden"
-        })
     }
 })
 
-router.delete('/:spotId', async (req, res) => {
+router.delete('/:spotId', requireAuth, async (req, res) => {
     const { user } = req
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) {
@@ -370,12 +354,12 @@ router.delete('/:spotId', async (req, res) => {
             return res.json({
                 "message": "Successfully deleted"
             })
+        } else {
+            res.status(403)
+            return res.json({
+                "message": "Forbidden"
+            })
         }
-    } else {
-        res.status(403)
-        return res.json({
-            "message": "Forbidden"
-        })
     }
 
 })
@@ -416,7 +400,7 @@ router.get('/:spotId/reviews', async (req, res) => {
         res.json({ "Reviews": reviewList })
     }
 })
-router.post('/:spotId/reviews', async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     const { user } = req
     const { review, stars } = req.body
     const spot = await Spot.findByPk(req.params.spotId)
@@ -442,21 +426,21 @@ router.post('/:spotId/reviews', async (req, res) => {
                 "error": error
             })
         }
-    let array = []
-    const allReviews = await Review.findAll({
-        where: {
-            spotId: req.params.spotId
+        let array = []
+        const allReviews = await Review.findAll({
+            where: {
+                spotId: req.params.spotId
+            }
+        })
+        allReviews.forEach(review => {
+            array.push(review.userId)
+        })
+        if (array.includes(user.id)) {
+            res.status(404)
+            return res.json({
+                "message": "User already has a review for this spot"
+            })
         }
-    })
-    allReviews.forEach(review =>{
-        array.push(review.userId)
-    })
-    if (array.includes(user.id)){
-        res.status(404)
-        return res.json({
-            "message": "User already has a review for this spot"
-          })
-    }
         const newReview = await Review.create({
             userId: user.id,
             spotId: req.params.spotId,
@@ -466,11 +450,120 @@ router.post('/:spotId/reviews', async (req, res) => {
 
         return res.json(newReview)
 
-    } else {
-        res.status(401)
-        return res.json({
-            "message": "Authentication required"
-        })
+    }
+})
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    const { user } = req
+    const spot = await Spot.findByPk(req.params.spotId)
+    if (!spot) {
+        res.status(404)
+        return res.json({ "message": "Spot couldn't be found" })
+    }
+    if (user) {
+        if (user.id !== spot.ownerId) {
+            const bookings = await Booking.findAll({
+                where: {
+                    spotId: req.params.spotId
+                }
+            })
+            let bookingList = []
+            bookings.forEach(book => {
+                bookingList.push(book.toJSON())
+            })
+            bookingList.forEach(book => {
+                delete book['id']
+                delete book['userId']
+                delete book['createdAt']
+                delete book['updatedAt']
+            })
+            return res.json({ "Bookings": bookingList })
+        } else {
+            const bookings2 = await Booking.findAll({
+                include: [
+                    {
+                        model: User
+                    }
+                ],
+                where: {
+                    spotId: req.params.spotId
+                }
+            })
+            let bookList2 = []
+            bookings2.forEach(book => {
+                bookList2.push(book.toJSON())
+            })
+            bookList2.forEach(book => {
+                delete book.User['username']
+            })
+
+            return res.json({ "Bookings": bookList2 })
+        }
+    }
+})
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const { user } = req
+    const { startDate, endDate } = req.body
+    const spot = await Spot.findByPk(req.params.spotId)
+    if (!spot) {
+        res.status(404)
+        return res.json({ "message": "Spot couldn't be found" })
+    }
+    let error = {}
+    let error2 = {}
+    let array = []
+    let sDate = new Date(startDate)
+    let eDate = new Date(endDate)
+    let sTime = sDate.getTime()
+    let eTime = eDate.getTime()
+    if (user) {
+        if (user.id === spot.ownerId) {
+            res.status(401)
+            return res.json({
+                "message": "Forbidden"
+            })
+        } else {
+            if (eTime <= sTime) {
+                error.endDate = "endDate cannot be on or before startDate"
+            }
+            if (Object.keys(error).length > 0) {
+                res.status(400)
+                return res.json({
+                    "message": "Bad Request",
+                    "errors": error
+                })
+            }
+            const bookings = await Booking.findAll({
+                where: {
+                    spotId: spot.id
+                }
+            })
+            bookings.forEach(book => {
+                array.push(book.toJSON())
+            })
+            array.forEach(part => {
+                if (sTime <= part.endDate.getTime() && sTime >= part.startDate.getTime()) {
+                    error2.startDate = "Start date conflicts with an existing booking"
+                }
+                if (eTime >= part.startDate.getTime() && eTime <= part.endDate.getTime()) {
+                    error2.endDate = "End date conflicts with an existing booking"
+                }
+            })
+            if (Object.keys(error2).length > 0) {
+                res.status(403)
+                return res.json({
+                    "message": "Sorry, this spot is already booked for the specified dates",
+                    "errors": error2
+                })
+            }
+            const createdBooking = await Booking.create({
+                userId: user.id,
+                spotId: spot.id,
+                startDate: startDate,
+                endDate: endDate
+
+            })
+            return res.json(createdBooking)
+        }
     }
 })
 module.exports = router;

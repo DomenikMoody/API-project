@@ -21,7 +21,7 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.use('./bookings',bookingsRouter)
+router.use('/bookings',bookingsRouter)
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });

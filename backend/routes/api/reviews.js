@@ -9,7 +9,7 @@ const router = express.Router();
 const { ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
-router.get('/current', async (req, res) => {
+router.get('/current', requireAuth, async (req, res) => {
     const { user } = req
     if (user) {
         const allReviews = await Review.findAll({
@@ -58,11 +58,6 @@ router.get('/current', async (req, res) => {
 
         })
         return res.json({ "Reviews": reviewList })
-    } else {
-        res.status(401)
-        return res.json({
-            "message": "Authentication required"
-        })
     }
 })
 
