@@ -541,7 +541,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                 array.push(book.toJSON())
             })
             array.forEach(part => {
-                if (sTime <= part.endDate.getTime() && sTime >= part.startDate.getTime()) {
+                if (sTime <= part.endDate.getTime() && sTime >= part.startDate.getTime() || sTime < part.startDate.getTime() && eTime > part.endDate.getTime()) {
                     error2.startDate = "Start date conflicts with an existing booking"
                 }
                 if (eTime >= part.startDate.getTime() && eTime <= part.endDate.getTime()) {
@@ -566,5 +566,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         }
     }
 })
+
 module.exports = router;
 //comment
