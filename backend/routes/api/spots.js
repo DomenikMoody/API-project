@@ -8,6 +8,83 @@ const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+    let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    let error = {}
+    if (page) {
+        page = parseInt(page)
+        if (page < 1) {
+            error.page = "Page must be greater than or equal to 1"
+        }
+    } else {
+        page = 1
+    }
+    if (size) {
+        size = parseInt(size);
+        if (size < 1) {
+            error.size = "Size must be greater than or equal to 1"
+        }
+    } else {
+        size = 20
+    }
+    if (maxLat) {
+        maxLat = parseInt(maxLat)
+        if (maxLat > 90) {
+            error.maxLat = "Maximum latitude is invalid"
+        }
+    }
+    if (minLat) {
+        minLat = parseInt(minLat)
+        if (minLat < -90) {
+            error.minLat = "Minimum latitude is invalid"
+        }
+    }
+    if (minLng) {
+        minLng = parseInt(minLng)
+        if (minLng < -180) {
+            error.minLng = "Maximum longitude is invalid"
+        }
+    }
+    if (maxLng) {
+        maxLng = parseInt(maxLng)
+        if (maxLng > 180) {
+            error.maxLng = "Minimum longitude is invalid"
+        }
+    }
+    if (minPrice) {
+        minPrice = parseInt(minPrice)
+        if (minPrice < 0) {
+            error.minPrice = "Minimum price must be greater than or equal to 0"
+        }
+    }
+    if (maxPrice) {
+        maxPrice = parseInt(maxPrice)
+        if (maxPrice < 0) {
+            error.maxPrice = "Maximum price must be greater than or equal to 0"
+        }
+    }
+
+    if (Object.keys(error).length > 0) {
+        res.status(400)
+        return res.json({
+            "message": "Bad Request",
+            "errors": error
+        })
+    }
+
+
+    ;
+    size = parseInt(size);
+    const pagination = {}
+    if (size >= 1 && size <= 20) {
+        pagination.limit = size
+    } else {
+        pagination.limit = 20
+    }
+    if (page >= 1 && page <= 10) {
+        pagination.offset = size * (page - 1)
+    } else {
+        pagination.offset = 1
+    }
     const allSpots = await Spot.findAll({
         include: [
             {
@@ -16,7 +93,8 @@ router.get('/', async (req, res) => {
             {
                 model: SpotImage
             }
-        ]
+        ],
+        ...pagination
     })
     let spotList = []
     allSpots.forEach(spot => {
@@ -41,6 +119,7 @@ router.get('/', async (req, res) => {
             element.previewImage = url
         })
 
+
     })
     spotList.forEach(obj => {
         delete obj['Reviews'];
@@ -48,7 +127,7 @@ router.get('/', async (req, res) => {
 
     })
 
-    return res.json({ "Spots": spotList })
+    return res.json({ "Spots": spotList, page, size })
 })
 
 
