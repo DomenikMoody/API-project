@@ -306,7 +306,7 @@ router.post('/', requireAuth, async (req, res) => {
     }
 })
 
-router.post('/:spotId/images', async (req, res) => {
+router.post('/:spotId/images',requireAuth, async (req, res) => {
     const { user } = req
     const { url, preview } = req.body
     const spot = await Spot.findAll({
