@@ -111,6 +111,7 @@ router.get('/', async (req, res) => {
         } else {
             element.avgRating = parseFloat((sum / num).toFixed(1))
         }
+        element.numReviews = num
         let url = ""
         element.SpotImages.forEach(spot => {
             if (spot.preview) {

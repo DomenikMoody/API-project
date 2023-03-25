@@ -15,8 +15,8 @@ module.exports = {
         city:"anchorage",
         state:"Alaska",
         country: "USA",
-        lat: null,
-        lng: null,
+        lat: 43,
+        lng: 54,
         name: 'Home Away From Home',
         description: 'its all in the name my guy',
         price: 50.00
@@ -27,8 +27,8 @@ module.exports = {
         state:"Maryland",
         city:"Baltimore",
         country:"USA",
-        lat:null,
-        lng:null,
+        lat:89,
+        lng:34,
         name:'APEX HOUSE',
         description: 'when the legends stay',
         price: 150.00
@@ -39,8 +39,8 @@ module.exports = {
         state: "texas",
         city: "austin",
         country: "USA",
-        lat: null,
-        lng: null,
+        lat: 12,
+        lng: 15,
         name: 'HOT PLACE',
         description: 'HOTEST PLACE ON EARTH',
         price: 200.00
