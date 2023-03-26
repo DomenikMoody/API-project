@@ -280,7 +280,7 @@ router.get('/:spotId', async (req, res) => {
         return res.json({ "message": "Spot couldn't be found" })
     }
 
-    return res.json(spotList)
+    return res.json(...spotList)
 })
 
 router.post('/', requireAuth, async (req, res) => {
@@ -335,12 +335,13 @@ router.post('/', requireAuth, async (req, res) => {
             description: description,
             price: price
         })
-        res.status(201)
-        return res.json(await Spot.findAll({
+        const result =await Spot.findAll({
             where: {
                 name: name
             }
-        }))
+        })
+        res.status(201)
+        return res.json(result[0])
     }
 })
 
@@ -679,8 +680,8 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             const createdBooking = await Booking.create({
                 userId: user.id,
                 spotId: spot.id,
-                startDate: startDate,
-                endDate: endDate
+                startDate: sDate,
+                endDate: eDate
 
             })
             return res.json(createdBooking)

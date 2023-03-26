@@ -69,7 +69,13 @@ router.post('/:reviewId/images',requireAuth, async (req,res)=>{
     const {user} = req
     const {url} = req.body
     const review = await Review.findByPk(req.params.reviewId);
-    console.log(review)
+    if (!url){
+        res.status(400)
+        return res.json({
+            "message": "Bad Request",
+            "error": "Must Add An Image"
+        })
+     }
     if (!review){
         res.status(404)
         return res.json({
@@ -81,7 +87,6 @@ router.post('/:reviewId/images',requireAuth, async (req,res)=>{
             reviewId: req.params.reviewId
         }
     })
-    console.log(reviews.length)
     if (reviews.length >= 10){
         res.status(402)
         return res.json({
