@@ -175,7 +175,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 if (spot.preview === true) {
                     element.previewImage = url
                 } else {
-                    if (!element.preview){
+                    if (!element.previewImage){
                         element.previewImage = null
                     }
                 }
@@ -228,6 +228,7 @@ router.get('/:spotId', async (req, res) => {
         } else {
             element.avgStarRating = (sum / num).toFixed(1)
         }
+        element.numReviews = num
 
         element.Owner = {
             "id": element.User.id,
