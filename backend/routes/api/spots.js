@@ -107,17 +107,23 @@ router.get('/', async (req, res) => {
             sum += star.stars
         })
         if (num === 0) {
-            element.avgRating = 0
+            element.avgStarRating = null
         } else {
-            element.avgRating = parseFloat((sum / num).toFixed(1))
+            element.avgStarRating = (sum/num).toFixed(1)
         }
         element.numReviews = num
         let url = ""
         element.SpotImages.forEach(spot => {
             if (spot.preview) {
-                url += spot.url
+                url = spot.url
+                element.previewImage = url
             }
-            element.previewImage = url
+            if (!spot.preview) {
+                if (!element.preview) {
+                    element.previewImage = null
+                }
+
+            }
         })
 
 
@@ -159,7 +165,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 sum += star.stars
             })
             if (num === 0) {
-                element.avgRating = 0
+                element.avgRating = null
             } else {
                 element.avgRating = (sum / num).toFixed(1)
             }
@@ -169,7 +175,9 @@ router.get('/current', requireAuth, async (req, res) => {
                 if (spot.preview === true) {
                     element.previewImage = url
                 } else {
-                    element.previewImage = null
+                    if (!element.preview){
+                        element.previewImage = null
+                    }
                 }
             })
 
@@ -216,9 +224,9 @@ router.get('/:spotId', async (req, res) => {
             sum += star.stars
         })
         if (num === 0) {
-            element.avgRating = 0
+            element.avgStarRating = null
         } else {
-            element.avgRating = (sum / num).toFixed(1)
+            element.avgStarRating = (sum / num).toFixed(1)
         }
 
         element.Owner = {
@@ -307,7 +315,7 @@ router.post('/', requireAuth, async (req, res) => {
     }
 })
 
-router.post('/:spotId/images',requireAuth, async (req, res) => {
+router.post('/:spotId/images', requireAuth, async (req, res) => {
     const { user } = req
     const { url, preview } = req.body
     const spot = await Spot.findAll({
@@ -397,6 +405,8 @@ router.put('/:spotId', requireAuth, async (req, res) => {
     }
     if (user) {
         if (user.id === spot.ownerId) {
+            let today = new Date()
+
             spot.address = address
             spot.city = city
             spot.state = state
@@ -406,6 +416,8 @@ router.put('/:spotId', requireAuth, async (req, res) => {
             spot.name = name
             spot.description = description
             spot.price = price
+            spot.updatedAt = today
+
 
             await spot.save()
 

@@ -12,7 +12,7 @@ module.exports = {
       {
         spotId:1,
         url:"https://www.istockphoto.com/photo/large-house-with-steep-roof-and-side-entry-three-car-garage-gm1272163106-374520133",
-        preview:true,
+        preview:false
       },
       {
         spotId:2,

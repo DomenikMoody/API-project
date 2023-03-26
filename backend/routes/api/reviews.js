@@ -44,6 +44,10 @@ router.get('/current', requireAuth, async (req, res) => {
 
             if (review.Spot.SpotImages[0].preview === true) {
                 review.Spot.previewImage = review.Spot.SpotImages[0].url
+            } else {
+                if (!review.Spot.previewImage){
+                    review.Spot.previewImage = null
+                }
             }
             delete review.Spot['SpotImages']
             delete review.User["username"]

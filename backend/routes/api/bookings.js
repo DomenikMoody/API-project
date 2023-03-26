@@ -29,7 +29,14 @@ router.get('/current', requireAuth, async (req, res) => {
         })
         bookingList.forEach(item=>{
           item.Spot.SpotImages.forEach(image=>{
-            item.Spot.previewImage = image.url
+            if (image.preview){
+                item.Spot.previewImage = image.url
+            }
+            if (!image.preview){
+                if (!item.Spot.previewImage){
+                    item.Spot.previewImage = null
+                }
+            }
           })
         delete item.Spot['createdAt'];
         delete item.Spot['updatedAt']
