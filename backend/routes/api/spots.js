@@ -1,8 +1,9 @@
 const { query } = require('express');
 const express = require('express');
-const { QueryInterface } = require('sequelize');
+const { QueryInterface, Op } = require('sequelize');
 const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
+
 
 
 const router = express.Router();
@@ -10,6 +11,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
     let error = {}
+    let where = {}
     if (page) {
         page = parseInt(page)
         if (page < 1) {
@@ -27,39 +29,63 @@ router.get('/', async (req, res) => {
         size = 20
     }
     if (maxLat) {
-        maxLat = parseInt(maxLat)
+        maxLat = +maxLat
         if (maxLat > 90) {
             error.maxLat = "Maximum latitude is invalid"
+        } else {
+            where.lat = {[Op.lte]: maxLat}
         }
     }
     if (minLat) {
-        minLat = parseInt(minLat)
+        minLat = +minLat
         if (minLat < -90) {
             error.minLat = "Minimum latitude is invalid"
+        } else {
+            if (where.lat){
+                where.lat = {[Op.between]: [minLat,maxLat]}
+            } else {
+                where.lat = {[Op.gte]: minLat}
+            }
         }
     }
     if (minLng) {
-        minLng = parseInt(minLng)
+        minLng = +minLng
         if (minLng < -180) {
             error.minLng = "Maximum longitude is invalid"
+        }else {
+            where.lng = {[Op.gte]: minLng}
         }
     }
     if (maxLng) {
-        maxLng = parseInt(maxLng)
+        maxLng = +maxLng
         if (maxLng > 180) {
             error.maxLng = "Minimum longitude is invalid"
+        } else {
+            if (where.lng){
+                where.lat = {[Op.between]: [minLng,maxLng]}
+            }else{
+                where.lng = {[Op.gte]: maxLng}
+            }
         }
     }
     if (minPrice) {
-        minPrice = parseInt(minPrice)
+        minPrice = +minPrice
         if (minPrice < 0) {
             error.minPrice = "Minimum price must be greater than or equal to 0"
+        } else {
+            where.price = {[Op.gte]: minPrice}
         }
     }
     if (maxPrice) {
-        maxPrice = parseInt(maxPrice)
+        maxPrice = +maxPrice
         if (maxPrice < 0) {
             error.maxPrice = "Maximum price must be greater than or equal to 0"
+        } else {
+            if (where.price){
+                where.price = {[Op.between]: [minPrice,maxPrice]}
+            }else {
+                where.price = {[Op.lte]: maxPrice}
+            }
         }
     }
 
@@ -94,6 +120,8 @@ router.get('/', async (req, res) => {
                 model: SpotImage
             }
         ],
+        where: where,
+
         ...pagination
     })
     let spotList = []
