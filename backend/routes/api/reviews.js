@@ -95,25 +95,40 @@ router.post('/:reviewId/images',requireAuth, async (req,res)=>{
     }
     if (user){
         if (user.id === review.userId){
-            await ReviewImage.create({
-                reviewId: req.params.reviewId,
-                url: url
-            })
-            const result = await ReviewImage.findAll({
+            const allReviewImages = await ReviewImage.findAll({
                 where: {
+                    reviewId: req.params.reviewId,
                     url: url
                 }
             })
-            let array = []
-            result.forEach(image=>{
-                array.push(image.toJSON())
-            })
-            array.forEach(part=>{
-                delete part['reviewId']
-                delete part['createdAt']
-                delete part['updatedAt']
-            })
-            return res.json(...array)
+            if (Object.keys(allReviewImages).length < 1){
+                await ReviewImage.create({
+                    reviewId: req.params.reviewId,
+                    url: url
+                })
+                const result = await ReviewImage.findAll({
+                    where: {
+                        url: url
+                    }
+                })
+
+                let array = []
+                result.forEach(image=>{
+                    array.push(image.toJSON())
+                })
+                array.forEach(part=>{
+                    delete part['reviewId']
+                    delete part['createdAt']
+                    delete part['updatedAt']
+                })
+                return res.json(...array)
+
+            } else {
+                res.status(403)
+                return res.json({
+                    "message": "image already uploaded"
+                })
+            }
         } else {
             res.status(403)
             return res.json({
