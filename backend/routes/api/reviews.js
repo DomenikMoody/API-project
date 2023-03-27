@@ -76,7 +76,7 @@ router.post('/:reviewId/images',requireAuth, async (req,res)=>{
             "error": "Must Add An Image"
         })
      }
-    if (!review){
+    if (Object.keys(review).length < 1){
         res.status(404)
         return res.json({
             "message": "Review couldn't be found"
