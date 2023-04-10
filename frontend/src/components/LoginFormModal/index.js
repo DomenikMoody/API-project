@@ -1,4 +1,3 @@
-// frontend/src/components/LoginFormModal/index.js
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
@@ -10,7 +9,18 @@ function LoginFormModal() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [disableLogin, setDisableLogin] = useState(true);
   const { closeModal } = useModal();
+
+  const handleCredentialChange = (e) => {
+    setCredential(e.target.value);
+    setDisableLogin(e.target.value.length < 4 || password.length < 6);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setDisableLogin(credential.length < 4 || e.target.value.length < 6);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,31 +37,45 @@ function LoginFormModal() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
-        <button type="submit">Log In</button>
-      </form>
+      <div className="Logincontainer">
+        <div className="Login">
+          <h1>Log In</h1>
+        </div>
+        <form onSubmit={handleSubmit} className="form">
+          <label>
+            <div className="userNameorEmail">
+              <input
+                className="userNameorEmailbox"
+                type="text"
+                value={credential}
+                placeholder="Username or Email"
+                onChange={handleCredentialChange}
+                required
+              />
+            </div>
+          </label>
+          <label>
+            <div>
+              <input
+                className="passwordbox"
+                type="password"
+                value={password}
+                placeholder="Password"
+                onChange={handlePasswordChange}
+                required
+              />
+            </div>
+          </label>
+          {errors.credential && <p>{errors.credential}</p>}
+          <button
+            type="submit"
+            className="LoginButton"
+            disabled={disableLogin}
+          >
+            Log In
+          </button>
+        </form>
+      </div>
     </>
   );
 }
