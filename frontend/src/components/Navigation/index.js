@@ -15,6 +15,9 @@ function Navigation({ isLoaded }) {
           <NavLink exact to="/"><img src="https://img.freepik.com/free-vector/pillows_1308-16584.jpg?w=2000" className='logo'></img></NavLink>
         </div>
         <div className='ProfileButton'>
+          <div>
+        {sessionUser && <NavLink to="/spots/new">Create a New Spot</NavLink>}
+          </div>
           {isLoaded && (
             <ProfileButton user={sessionUser} />
           )}

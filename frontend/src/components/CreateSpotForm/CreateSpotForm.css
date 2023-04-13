@@ -1,0 +1,78 @@
+.CityAndStateContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .CityAndStateLabelContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .StateContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .StateContainer label {
+    margin-bottom: 0.5rem;
+  }
+  .LatAndLongContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .addressDivContainer{
+    border-bottom: 1px solid black;
+  }
+.describePlace{
+    border-bottom: 1px solid black;
+}
+.DetailsOfHouseDescription{
+    border-bottom: 1px solid black;
+}
+textarea {
+    resize: none;
+  }
+.nameYourPlace{
+    border-bottom: 1px solid black;
+}
+.Price{
+    border-bottom: 1px solid black;
+}
+.SpotImages{
+    border-bottom: 1px solid black;
+}
+.CreateForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 1000px;
+}
+.countryDiv{
+  display: flex;
+  gap: 4px;
+}
+.addressDiv{
+  display: flex;
+  gap: 4px;
+}
+.CityDiv{
+  display: flex;
+  gap: 4px;
+}
+.StateDiv {
+  display: flex;
+  gap: 4px;
+}
+.LatDiv{
+  display: flex;
+  gap: 4px;
+}
+.LongDiv{
+  display: flex;
+  gap: 4px;
+}

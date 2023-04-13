@@ -4,11 +4,13 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import profilebutton from './ProfileButton.css'
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const divRef = useRef();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -19,7 +21,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!divRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -37,25 +39,29 @@ function ProfileButton({ user }) {
     closeMenu();
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const divClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} className="profileButton">
+        <i className="fas fa-navicon" /> <i className="fas fa-user-circle" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={divClassName} ref={divRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
+            <div className="ProfileButtonInside">
+              <div className="userNameLine">Hello, {user.username}</div>
+              <div className="emailLine">{user.email}</div>
+              <div>
+                <NavLink className="UserManageSpot" to="/spots/current">Manage Spots</NavLink>
+              </div>
+              <div>
+                <button onClick={logout} className="logoutButton">Log Out</button>
+              </div>
+            </div>
           </>
         ) : (
-          <>
+          <div style={{ listStyleType: "none" }}>
             <OpenModalMenuItem
               itemText="Log In"
               onItemClick={closeMenu}
@@ -66,9 +72,9 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
-      </ul>
+      </div>
     </>
   );
 }

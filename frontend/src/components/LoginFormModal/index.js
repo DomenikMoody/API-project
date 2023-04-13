@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { Link, useHistory } from 'react-router-dom';
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const [disableLogin, setDisableLogin] = useState(true);
   const { closeModal } = useModal();
+  const history = useHistory()
 
   const handleCredentialChange = (e) => {
     setCredential(e.target.value);
@@ -21,10 +23,17 @@ function LoginFormModal() {
     setPassword(e.target.value);
     setDisableLogin(credential.length < 4 || e.target.value.length < 6);
   };
+  const handleCredentialInfo = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" }))
+      .then(closeModal)
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
+    history.push("/")
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(async (res) => {
@@ -33,6 +42,7 @@ function LoginFormModal() {
           setErrors(data.errors);
         }
       });
+
   };
 
   return (
@@ -41,6 +51,7 @@ function LoginFormModal() {
         <div className="Login">
           <h1>Log In</h1>
         </div>
+        {errors.credential && <p className="errors">{errors.credential}</p>}
         <form onSubmit={handleSubmit} className="form">
           <label>
             <div className="userNameorEmail">
@@ -66,7 +77,7 @@ function LoginFormModal() {
               />
             </div>
           </label>
-          {errors.credential && <p>{errors.credential}</p>}
+
           <button
             type="submit"
             className="LoginButton"
@@ -74,6 +85,15 @@ function LoginFormModal() {
           >
             Log In
           </button>
+          <div>
+            <button
+              type="submit"
+              className="DemoUser"
+              onClick={handleCredentialInfo}
+            >
+              Demo-User
+            </button>
+          </div>
         </form>
       </div>
     </>

@@ -10,5 +10,21 @@
     align-items: center;
     border-bottom: 1px solid rgb(173, 173, 173);
     width: 100%;
-
+    max-width: 1000px;
+}
+.nav{
+    max-width: 1000px;
+}
+.profileButton{
+    border-radius: 40px;
+    height: 40px;
+    width: 80px;
+    padding: 0;
+    font-size: 16pt;
+    gap:2px;
+}
+.ProfileButton{
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }

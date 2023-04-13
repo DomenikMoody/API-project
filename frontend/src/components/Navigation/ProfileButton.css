@@ -1,0 +1,43 @@
+.profile-dropdown {
+    position: absolute;
+    left: 850px;
+    top: 60px;
+    border: black 1px solid;
+    background-color: white;
+    border-radius: 5px;
+    width: 150px;
+}
+
+.ProfileButtonInside {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    justify-content: center;
+}
+
+.emailLine {
+    width: 100%;
+    border-bottom: 2px black solid;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.logoutButton {
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    background-color: grey;
+    border: 1px black solid;
+    color: white;
+}
+
+.UserManageSpot {
+    border-bottom: 2px black solid;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 7px;
+    max-width:100%;
+    padding: 4px 17px;
+}

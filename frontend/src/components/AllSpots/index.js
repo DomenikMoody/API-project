@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 function AllSpot() {
   const dispatch = useDispatch()
   const allSpots = useSelector(state => state.spots)
-  console.log(allSpots)
   useEffect(() => {
     dispatch(getSpotsThunk())
   }, [dispatch])

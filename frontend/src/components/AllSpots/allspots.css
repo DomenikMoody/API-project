@@ -1,16 +1,21 @@
 .eachSpotContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   max-width: 100%;
   width: 100%;
-  gap: 13px;
+  gap: 10px;
+  flex-basis: 25%;
 }
 
 img.pic {
-  height: 400px;
-  width: 400px;
+  height: 175px;
+  width: 175px;
+  padding:0;
+  margin:0;
   object-fit: cover;
+}
+img{
+  margin: 0;
 }
 
 .Spot {
@@ -34,10 +39,10 @@ img.pic {
 .cityStateStars {
   display: flex;
   justify-content: space-between;
+  font-size: 12px;
 
 
 }
-
 .cityState {
   display: flex;
 

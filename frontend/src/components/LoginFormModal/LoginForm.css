@@ -37,3 +37,24 @@ h1{
     padding: 15px 15px;
     box-shadow: 3px 3px black;
 }
+.DemoUser {
+    border: white solid 1px;
+    background-color: white;
+    width: 510px;
+    margin: 5px;
+    margin-top:19px;
+    padding: 15px 15px;
+    color: blue
+}
+.DemoUser:hover {
+    text-decoration: underline;
+}
+.errors {
+    color: red;
+    text-align: center; /* to center the text horizontally */
+    display: flex; /* to use flexbox layout */
+    justify-content: center; /* to center the error message horizontally */
+    align-items: center; /* to center the error message vertically */
+    height: 100%; /* to make sure the error message takes up the full height of the modal */
+    padding-bottom: 30px;
+}

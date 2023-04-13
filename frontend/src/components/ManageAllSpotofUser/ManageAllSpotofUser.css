@@ -1,0 +1,81 @@
+.ManageYourSpotsContainer{
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    flex-basis: 25%;
+    padding: 20px
+}
+.ManageYourSpots {
+    margin-bottom: 0;
+    font-size: 28pt;
+}
+
+.CreateASpotButton {
+    background-color: rgb(245, 108, 108);;
+    Color: white;
+    font-size: 15pt;
+    box-shadow: 3px 3px black;
+    width:200px;
+}
+
+.userEachSpotContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 100%;
+    width: 100%;
+    gap: 10px;
+    flex-basis: 25%;
+    margin-top: 30px;
+  }
+
+  img.Userpic {
+    height: 175px;
+    width: 175px;
+    padding:0;
+    margin:0;
+    object-fit: cover;
+  }
+  img{
+    margin: 0;
+  }
+
+  .userSpot {
+    flex-basis: 25%;
+    border: solid transparent 3px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 10px;
+    transition: transform 1s ease-in-out;
+    flex-basis: 25%;
+
+  }
+
+  .userSpot:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.2);
+
+  }
+
+  .userCityStateStars{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+
+
+  }
+  .usercityState {
+    display: flex;
+
+  }
+  .buttonContainer{
+    display:flex;
+    gap: 20px;
+    justify-content: space-around;
+    margin: 10px;
+  }
+  .userDeleteButton{
+    background-color: rgb(237, 45, 11);
+    border-radius: 20px;
+    color:white
+  }
