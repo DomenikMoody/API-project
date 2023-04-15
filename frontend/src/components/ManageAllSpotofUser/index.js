@@ -36,7 +36,7 @@ function ManageAllSpotofUser() {
 
     return (
         <div className="ManageYourSpotsContainer">
-            <h2 className="ManageYourSpots">Manage Your Spots</h2>
+            <h2 className="ManageYourSpots">Manage Spots</h2>
             <button className="CreateASpotButton" onClick={handleCreateaNewSpot}>
                 Create a New Spot
             </button>

@@ -5,12 +5,13 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import profilebutton from './ProfileButton.css'
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const divRef = useRef();
+  const history = useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -37,6 +38,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    history.push("/")
   };
 
   const divClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -50,18 +52,18 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <div className="ProfileButtonInside">
-              <div className="userNameLine">Hello, {user.username}</div>
+              <div className="userNameLine">Hello, {user.firstName}</div>
               <div className="emailLine">{user.email}</div>
               <div>
                 <NavLink className="UserManageSpot" to="/spots/current">Manage Spots</NavLink>
               </div>
-              <div>
+              <div className="logoutBtn">
                 <button onClick={logout} className="logoutButton">Log Out</button>
               </div>
             </div>
           </>
         ) : (
-          <div style={{ listStyleType: "none" }}>
+          <div className="LittleLoginBar"style={{ listStyleType: "none" }}>
             <OpenModalMenuItem
               itemText="Log In"
               onItemClick={closeMenu}

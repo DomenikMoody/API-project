@@ -1,0 +1,62 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.EmailboxforSignup{
+    border: 3px solid black;
+    width: 500px;
+    height: 25px;
+    margin: 5px;
+    background-color: rgb(220, 232, 242);
+}
+.UserNameboxforSignup{
+    border: 3px solid black;
+    width: 500px;
+    height: 25px;
+    margin: 5px;
+    background-color: rgb(220, 232, 242);
+}
+.firstNameboxforSignup{
+    border: 3px solid black;
+    width: 500px;
+    height: 25px;
+    margin: 5px;
+    background-color: rgb(220, 232, 242);
+}
+.lastNameboxforSignup{
+    border: 3px solid black;
+    width: 500px;
+    height: 25px;
+    margin: 5px;
+    background-color: rgb(220, 232, 242);
+}
+.PasswordboxforSignup{
+    border: 3px solid black;
+    width: 500px;
+    height: 25px;
+    margin: 5px;
+    background-color: rgb(220, 232, 242);
+}
+.CPboxforSignUp{
+    border: 3px solid black;
+    width: 500px;
+    height: 25px;
+    margin: 5px;
+    background-color: rgb(220, 232, 242);
+}
+h1{
+    text-align: center;
+    justify-content: end;
+    margin: 15px ;
+
+}
+.SignUpBtn {
+    background-color: rgb(178, 176, 176);
+    color: black;
+    width: 510px;
+    margin: 5px;
+    margin:20px;
+    padding: 15px 15px;
+    box-shadow: 3px 3px black;
+}

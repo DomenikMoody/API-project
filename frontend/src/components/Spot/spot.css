@@ -1,155 +1,59 @@
-.spotDetails{
-    max-width: 1000px;
-    padding: 10px 30px ;
-    font-family: sans-serif;
-}
-h3{
-    font-size: 28px;
-}
-.cityStateCountryContainer{
-    padding-bottom: 20px;
-}
-.spotImagesContainer{
-    max-width: 1000px;
-}
-.spotOwnerContainer{
+.my-page {
     display: flex;
-    justify-content: space-between;
-    height: 100%;
+}
+
+.first-image {
+    width: 50%;
+    height: auto;
+    padding-right: 5px;
+}
+
+.quadrent {
+    display: flex;
+    gap: 5px;
+}
+
+.remaining-images {
+    width: 100%
+}
+
+.description {
     width: 100%;
-    border-bottom: 1px black solid;
 }
-.Priceandreviews{
+
+.spotOwnerContainer {
     display: flex;
-    justify-content: space-between;
+}
+
+.SpotOwner {
+    width: 70%;
+}
+
+.Priceandreviews {
+    display: flex;
+    border: solid black 3px;
+    border-radius: 20px;
     flex-wrap: wrap;
-    border: black 3px solid;
-    border-radius: 15px;
+    width: 30%;
+    justify-content: space-around;
     padding: 15px;
-    height: 100px;
+    height: 50%;
+    margin-top: 20px;
+}
+
+.price {
+    display: flex;
 }
 .ReserveButton{
+    text-align: center;
     width: 100%;
 }
-.cssForReserveButton{
-    width: 100%;
-    padding: 10px 40px;
-    background-color: rgb(245, 108, 108);
-    box-shadow: 3px 3px black;
-    color: white;
+.cssForReserveButton {
+    padding: 14px;
+    width: 90%;
+    margin-bottom: 10px;
 }
 .reviewsForReservebutton{
-    padding: 10px;
     display: flex;
-    justify-content: center;
-    align-self: center;
-}
-
-.price{
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin: 0;
-    gap: 2px;
-}
-p{
-    margin: 0;
-}
-.priceStuff {
-    font-weight: bold;
-    font-size: 16pt;
-    text-align: center;
-}
-.priceStuff1{
-    display: flex;
-    justify-content: center;
-    align-self: center;
-}
-.nightStuff{
-    display: flex;
-    flex-flow: wrap;
     align-items: center;
-    justify-content: center;
-    align-content: center;
 }
-.night{
-    align-self: center;
-}
-.description{
-    padding-bottom: 100px;
-}
-.reviewTitlebar{
-    font-size: 24pt;
-    padding-top: 25px;
-    padding-bottom: 30px;
-}
-.reviewName{
-    /* font-weight: bold; */
-    font-size: 15pt;
-}
-.monthYear{
-    color:grey;
-}
-.individualreview{
-    padding-bottom: 30px;
-}
-.container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 10px;
-    max-width: 1000px;
-    max-height: 500px;
-  }
-
-  .half {
-    grid-row: 1 / 3;
-    grid-column: 1 / 2;
-  }
-
-  .quad {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-  }
-
-  .quad:nth-child(2) {
-    grid-row: 1 / 2;
-    grid-column: 3 / 4;
-  }
-
-  .quad:nth-child(3) {
-    grid-row: 2 / 3;
-    grid-column: 2 / 3;
-  }
-
-  .quad:nth-child(4) {
-    grid-row: 2 / 3;
-    grid-column: 3 / 4;
-  }
-
-  .Halfpic {
-    width: 500px;
-    height: 480px;
-    object-fit: cover;
-  }
-  .quad1 {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-  }
-  .quad3{
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-  }
-  .quad2{
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-  }
-  .quad4{
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-  }

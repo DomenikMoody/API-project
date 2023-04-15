@@ -38,7 +38,6 @@ export const EditSpot = (spot) => async (dispatch) => {
     })
     if (response.ok){
         const data = response.json()
-        console.log("HERE IS THE DATA", data)
         return spot
     }
 }

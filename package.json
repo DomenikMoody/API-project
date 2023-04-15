@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/DomenikMoody/API-project/issues"
   },
-  "homepage": "https://github.com/DomenikMoody/API-project#readme"
+  "homepage": "https://github.com/DomenikMoody/API-project#readme",
+  "dependencies": {
+    "react-icons": "^4.8.0"
+  }
 }

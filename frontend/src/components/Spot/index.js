@@ -5,20 +5,23 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { getReviewsBySpotThunk } from '../../store/reviews';
 import spot from "./spot.css"
+import OpenModalButton from '../OpenModalButton'
+import DeleteReviewModal from '../DeleteReviewModal';
+import CreateReviewModal from '../CreateReviewModal';
 
 function Spot() {
     const dispatch = useDispatch()
     const { spotId } = useParams();
     const spot = useSelector(state => state.singleSpot)
+    const sessionUser = useSelector(state => state.session.user);
     const allreviews = useSelector(state => state.review)
     const reviews = Object.values(allreviews)
     const soloSpot = spot[spotId]
     //------------------image stuff ------------------------------------
-    let images = new Array(5).fill(null)
+    let images = []
     soloSpot?.SpotImages?.forEach(image => {
-        images.unshift(image.url)
+        images.push(image.url)
     })
-
     //--------------------Reserve Button Submit Fuction------------------
     const reserveButton = (e) => {
         alert("Feature Coming Soon")
@@ -47,22 +50,19 @@ function Spot() {
                 <p>{`${soloSpot?.city?.charAt(0).toUpperCase() + soloSpot?.city?.slice(1)}, ${soloSpot?.state?.charAt(0).toUpperCase() + soloSpot?.state?.slice(1)}, ${soloSpot?.country.charAt(0).toUpperCase() + soloSpot?.country?.slice(1)}`}</p>
             </div>
             <div className="spotImagesContainer">
-                <div className="container">
-                    <div className="half">
-                        <img className='Halfpic'src={images[0] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg":images[0]} alt="Half-sized image" />
+                <div className="my-page">
+                    <img className='first-image' src={images[0] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[0]} alt="Half-sized image" />
+                    <div className='quadrent'>
+                        <div className='firstColumn'>
+                            <img className='remaining-images' src={images[1] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[1]} alt="Quad-sized image" />
+                            <img className='remaining-images' src={images[2] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[2]} alt="Quad-sized image" />
+                        </div>
+                        <div className="secondColumn">
+                            <img className='remaining-images' src={images[3] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[3]} alt="Quad-sized image" />
+                            <img className='remaining-images' src={images[4] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[4]} alt="Quad-sized image" />
+                        </div>
                     </div>
-                    <div className="quad">
-                        <img className='quad1' src={images[1] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg":images[1]} alt="Quad-sized image" />
-                    </div>
-                    <div className="quad">
-                        <img className='quad2' src={images[2] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg":images[2]} alt="Quad-sized image" />
-                    </div>
-                    <div className="quad3">
-                        <img className='quad3' src={images[3] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg":images[3]} alt="Quad-sized image" />
-                    </div>
-                    <div className="quad4">
-                        <img className='quad4'src={images[4] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg":images[4]} alt="Quad-sized image" />
-                    </div>
+
                 </div>
             </div>
             <div className='spotOwnerContainer'>
@@ -93,12 +93,21 @@ function Spot() {
             </div>
             <div className='reviewsContainers'>
                 <div className='reviewTitlebar'><i class="fa-solid fa-star"></i>{`${soloSpot?.avgStarRating || "0.0"} · ${soloSpot?.numReviews || "0"} reviews`}</div>
+                {/* -------------------------THIS IS WHERE WE PUT THE BUTTON FOR REVIEW--------------------- */}
+                {sessionUser && !reviews.some(review => review?.userId === sessionUser?.id) && soloSpot?.ownerId !== sessionUser?.id && (
+                    <div className='ReviewButton'>
+                        <OpenModalButton className="userReviewDeleteButton" buttonText="Post Your Review" modalComponent={<CreateReviewModal prop={soloSpot} />} />
+                    </div>
+                )}
+
             </div>
-            {reviews?.map(review =>
+
+            {reviews?.toReversed().map(review =>
                 <div className='individualreview'>
                     <div className='review'>
                         <div className='reviewName'>
                             <p>{review?.User?.firstName.charAt(0).toUpperCase() + review?.User?.firstName.slice(1)}</p>
+                            { }
                         </div>
                         <div className="monthYear">
                             <p>{formatDate(review?.updatedAt)}</p>
@@ -106,6 +115,11 @@ function Spot() {
                         <div className='actualReview'>
                             <p>{review?.review}</p>
                         </div>
+                        {sessionUser?.id === review?.userId && (
+                            <div>
+                                <OpenModalButton className="userReviewDeleteButton" buttonText="DELETE" modalComponent={<DeleteReviewModal prop={review} />} />
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

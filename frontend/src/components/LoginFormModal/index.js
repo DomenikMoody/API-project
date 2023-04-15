@@ -91,7 +91,7 @@ function LoginFormModal() {
               className="DemoUser"
               onClick={handleCredentialInfo}
             >
-              Demo-User
+             Log in as Demo User
             </button>
           </div>
         </form>

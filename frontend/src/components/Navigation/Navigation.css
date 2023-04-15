@@ -2,15 +2,18 @@
     visibility: hidden;
 }
 .logo {
-   height: 50px;
+   height: 15%;
+   width: 20%;
+   border: 1px white solid;
+   border-radius: 50px;
 }
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgb(173, 173, 173);
+    border-bottom: 3px solid black;
     width: 100%;
-    max-width: 1000px;
+    margin-bottom:50px ;
 }
 .nav{
     max-width: 1000px;
