@@ -47,3 +47,10 @@ img{
 a{
 width: 25%;
 }
+.allspotbigbox{
+  width: 1000px;
+}
+.allspotbiggerBox{
+  display: flex;
+  justify-content: center;
+}

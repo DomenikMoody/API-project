@@ -51,7 +51,9 @@ export const RemoveSpot = (spotId) => async (dispatch) => {
     }
 }
 export const UserSpot = () => async (dispatch) => {
+    console.log('FROM INSIDE THE THUNK')
     const response = await csrfFetch('/api/spots/current')
+    console.log('THE RESPONSE============>', response)
     if (response.ok) {
         const data = await response.json()
         await dispatch(userspot(data))
@@ -68,6 +70,7 @@ export const CreateSpot = (spot, images) => async (dispatch) => {
     if (response.ok) {
         const newSpot = await response.json();
         for (let i = 0; i < images.length; i++) {
+            console.log("HERE IS YOUR IMAGES", images[i])
             await csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

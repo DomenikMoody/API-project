@@ -1,6 +1,6 @@
 .ProfileButtonInside {
     position: absolute;
-    top: 10%;
+    top: 14%;
     left: 80%;
     border: black 1px solid;
     background-color: white;
@@ -42,11 +42,12 @@
 .LittleLoginBar{
     position: absolute;
     top: 10%;
-    left: 94%;
+    left: 91%;
     border: black 1px solid;
     background-color: white;
     border-radius: 5px;
     width: fit-content;
+    padding: 3px;
 }
 .logoutBtn{
     width: 100%;

@@ -1,0 +1,20 @@
+.createbigBox{
+   text-align: center;
+}
+.createBiggerBox{
+    display: flex;
+    justify-content: center;
+}
+.CreateAnReviewbox{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.SubmittheReview{
+    width: 384px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(242, 91, 94);
+    border: 3px black solid;
+    color: white;
+    box-shadow: 3px 3px black;
+}

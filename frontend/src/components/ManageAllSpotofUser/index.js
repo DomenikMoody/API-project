@@ -13,6 +13,7 @@ function ManageAllSpotofUser() {
     const sessionUser = useSelector(state => state.session.user);
     const userSpot = useSelector(state => state.userSpots);
     const userSpotArray = Object.values(userSpot);
+    console.log("HERE IS THE ARRAY", userSpotArray)
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -37,49 +38,52 @@ function ManageAllSpotofUser() {
     return (
         <div className="ManageYourSpotsContainer">
             <h2 className="ManageYourSpots">Manage Spots</h2>
-            <button className="CreateASpotButton" onClick={handleCreateaNewSpot}>
+            {/* <button className="CreateASpotButton" onClick={handleCreateaNewSpot}>
                 Create a New Spot
-            </button>
+            </button> */}
             <div className="userEachSpotContainer">
-                {userSpotArray.length > 0 &&
-                    userSpotArray.map((spot) => (
-                        <div className="UserSpotCard" key={spot?.id}>
-                            <Link to={`/spots/${spot?.id}`}>
-                                <div className="userSpot" title={spot?.name}>
+                {console.log(userSpotArray)}
+                {userSpotArray.length > 0 ?
+                    userSpotArray.map(uspot => (
+                        <div className="UserSpotCard" key={uspot?.id}>
+                            <Link to={`/spots/${uspot?.id}`}>
+                                <div className="userSpot" title={uspot?.name}>
                                     <div>
                                         <img
                                             src={
-                                                spot?.previewImage ||
+                                                uspot?.previewImage ||
                                                 'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg'}
                                             className="Userpic" />
                                     </div>
                                     <div className="userCityStateStars">
                                         <div className="usercityState">
                                             <div>
-                                                {`${spot?.city.charAt(0).toUpperCase() + spot?.city.slice(1)}`}
+                                                {`${uspot?.city.charAt(0).toUpperCase() + uspot?.city.slice(1)}`}
                                             </div>
                                             <div>
-                                                {`, ${spot?.state.charAt(0).toUpperCase() + spot?.state.slice(1)}`}
+                                                {`, ${uspot?.state.charAt(0).toUpperCase() + uspot?.state.slice(1)}`}
                                             </div>
                                         </div>
                                         <div className="userstars">
                                             <div>
                                                 <i className="fa-solid fa-star"></i>
-                                                {spot?.avgStarRating || '0.0'}
+                                                {uspot?.avgStarRating || '0.0'}
                                             </div>
                                         </div>
                                     </div>
-                                    <div>${spot?.price}/night</div>
+                                    <div>${uspot?.price}/night</div>
                                 </div>
                             </Link>
                             <div className="buttonContainer">
-                                <Link to={`/spots/${spot?.id}/edit`}>
+                                <Link to={`/spots/${uspot?.id}/edit`}>
                                     <button className="userUpdateButton">UPDATE</button>
                                 </Link>
-                                <OpenModalButton className="userDeleteButton" buttonText="DELETE" modalComponent={<DeleteSpotModal prop={spot} />} />
+                                <OpenModalButton className="userDeleteButton" buttonText="DELETE" modalComponent={<DeleteSpotModal prop={uspot} />} />
                             </div>
                         </div>
-                    ))}
+                    )) : <button className="CreateASpotButton" onClick={handleCreateaNewSpot}>
+                    Create a New Spot
+                </button>}
             </div>
         </div>
     )

@@ -97,104 +97,102 @@ function UpdateForm() {
     }
     if (sessionUser.id === soloSpot[spotId]?.ownerId) {
         return (
-            <form onSubmit={handleUpdate}>
-            <div className="UpdateFormContainer">
-                <h1>Update your Spot</h1>
-                <h2>{`Where's your place located?`}</h2>
-                <h3>Guests will only get your exact address once they booked a reservation.</h3>
+            <div className='centeringBox'>
+            <form className="CreateForm" onSubmit={handleUpdate}>
+                <div className='CreateFormcontainer'>
+                    <h1 className='CreateNewSpotForm'>Create a new spot</h1>
+                    <h2 className="wheres">{`Where's your place located?`}</h2>
+                    <h3 className='guess'>Guests will only get your exact address once they booked a reservation.</h3>
 
-                <div className='UpdateaddressDivContainer'>
-                    <div className="UpdatecountryContainer">
-                        <label>
-                            <div className="UpdatecountryDiv"><p>Country</p> {issues.country && <p className='errorsValidation'>{issues.country}</p>}</div>
-                            <input className="UpdatecountryInput" type="text" value={soloSpot[spotId]?.country} placeholder="Country" onChange={(e) => setCountry(e.target.value)} />
-                        </label>
-                    </div>
-
-                    <div className="UpdateaddressContainer">
-                        <label>
-                            <div className="UpdateaddressDiv"><p>Street Address</p> {issues.address && <p className='errorsValidation'>{issues.address}</p>}</div>
-                            <input className="UpdateAddressInput" type="text" value={address} placeholder="Address" onChange={(e) => setAddress(e.target.value)} />
-                        </label>
-                    </div>
-
-                    <div className="UpdateCityAndStateContainer">
-                        <div className="UpdateCityAndStateLabelContainer">
-                            <div className="UpdateCityDiv"><p>City</p> {issues.city && <p className='errorsValidation'>{issues.city}</p>}</div>
-                            <input className="UpdateCityInput" type="text" value={city} placeholder="City" onChange={(e) => setCity(e.target.value)} />
-                        </div>
-                        <div className="updatecommaDiv">
-                            <p className="updatecomma">,</p>
+                    <div className='addressDivContainer'>
+                        <div className="countryContainer">
+                            <label>
+                                <div className="countryDiv">Country {issues.country && <p className='errorsValidation'>{issues.country}</p>}</div>
+                                <input className="countryInput" type="text" value={country} placeholder="Country" onChange={(e) => setCountry(e.target.value)} />
+                            </label>
                         </div>
 
-                        <div className="UpdateCityAndStateLabelContainer">
-                            <div className="UpdateStateDiv"><p>State</p> {issues.state && <p className='errorsValidation'>{issues.state}</p>}</div>
-                            <input className="UpdateStateInput" type="text" value={state} placeholder="State" onChange={(e) => setState(e.target.value)} />
+                        <div className="addressContainer">
+                            <label>
+                                <div className="addressDiv">Street Address{issues.address && <p className='errorsValidation'>{issues.address}</p>}</div>
+                                <input className="AddressInput" type="text" value={address} placeholder="Address" onChange={(e) => setAddress(e.target.value)} />
+                            </label>
                         </div>
-                    </div>
-                    <div className="UpdateLatAndLongContainer">
-                        <div className="UpdateLatLabelContainer">
-                            <div className="UpdateLatDiv"><p>Latitude</p> {issues.lat && <p className='errorsValidation'>{issues.lat}</p>}</div>
-                            <input className="UpdateLatInput" type="text" value={latitude} placeholder="Latitude" onChange={(e) => setLatitude(e.target.value)} />
-                        </div>
-                        <div className="UpdatecommaDiv">
-                            <p className="Updatecomma">,</p>
-                        </div>
-                        <div className="UpdateLongLabelContainer">
-                            <div className="UpdateLongDiv"><p>Longitude</p> {issues.lng && <p className='errorsValidation'>{issues.lng}</p>}</div>
-                            <input className="UpdateLongInput" type="text" value={longitude} placeholder="Longitude" onChange={(e) => setLongitude(e.target.value)} />
-                        </div>
-                    </div>
-                </div>
-                <div className='UpdatedescribePlace'>
-                    <div className='UpdateAboutSpot'>
-                        <h2>Describe your place to guests</h2>
-                    </div>
-                    <div className="UpdateDetailsOfHouseDescription">
-                        <h4>Mention the best features of your space, any special amentities like
-                            fast wifi or parking, and what you love about the neighborhood.</h4>
-                        <div className="UpdatedescribePlacetextbox">
-                            <div>
-                                <label htmlFor="text-input"></label>
-                                <textarea
-                                    id="text-input"
-                                    name="text"
-                                    rows="10"
-                                    cols="50"
-                                    placeholder='Please write at least 30 characters'
-                                    value={description}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                ></textarea>
-                                {issues.description && <p className='errorsValidation'>{issues.description}</p>}
+
+                        <div className="CityAndStateContainer">
+                            <div className="CityAndStateLabelContainer">
+                                <div className="CityDiv">City{issues.city && <p className='errorsValidation'>{issues.city}</p>}</div>
+                                <input className="CityInput" type="text" value={city} placeholder="City" onChange={(e) => setCity(e.target.value)} />
+                            </div>
+
+                            <div className="CityAndStateLabelContainer">
+                                <div className="StateDiv">State {issues.state && <p className='errorsValidation'>{issues.state}</p>}</div>
+                                <input className="StateInput" type="text" value={state} placeholder="State" onChange={(e) => setState(e.target.value)} />
                             </div>
                         </div>
                     </div>
+                    <div className='describePlace'>
+                        <div className='AboutSpot'>
+                            <h2 className='wheres'>Describe your place to guests</h2>
+                        </div>
+                        <div className="DetailsOfHouseDescription">
+                            <h4 className='guess'>Mention the best features of your space, any special amentities like
+                                fast wifi or parking, and what you love about the neighborhood.</h4>
+                            <div className="describePlacetextbox">
+                                <div className='theTextArea'>
+                                    <label htmlFor="text-input"></label>
+                                    <textarea
+                                        id="text-input"
+                                        name="text"
+                                        rows="10"
+                                        cols="50"
+                                        placeholder='Please write at least 30 characters'
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                    ></textarea>
+                                    {issues.description && <p className='errorsValidation'>{issues.description}</p>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='nameYourPlace'>
+                        <div className='NameOfPlace'>
+                            <h2 className='wheres'>Create a title for your spot</h2>
+                        </div>
+                        <div className="DetailsOfNameOfPlace">
+                            <h4 className='guess'>Catch guests' attention with a spot title that highlights what makes
+                                your place special.</h4>
+                            <div className='thenameInput'>
+
+                                <input className="nameInput" type="text" value={name} placeholder="Name of your spot" onChange={(e) => setName(e.target.value)} />
+                                <div>
+                                    {issues.name && <p className='errorsValidation'>{issues.name}</p>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='Price'>
+                        <div className='PriceOfPlace'>
+                            <h2 className='wheres'>Set a base price for your spot</h2>
+                        </div>
+                        <div className="DetailsOfPriceOfPlace">
+                            <h4 className='guess'>Competitive pricing can help your listing stand out and rank higher
+                                in search results.</h4>
+                            <div className='thenameInput'>
+                                $ <input className="PriceInput" type="text" value={price} placeholder="Price per night (USD)" onChange={(e) => setPrice(e.target.value)} />
+                                {issues.price && <p className='errorsValidation'>{issues.price}</p>}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div className='UpdatenameYourPlace'>
-                    <div className='UpdateNameOfPlace'>
-                        <h2>Create a title for your spot</h2>
-                    </div>
-                    <div className="UpdateDetailsOfNameOfPlace">
-                        <h4>Catch guests' attention with a spot title that highlights what makes
-                            your place special.</h4>
-                        <input className="UpdatenameInput" type="text" value={name} placeholder="Name of your spot" onChange={(e) => setName(e.target.value)} />
-                        {issues.name && <p className='errorsValidation'>{issues.name}</p>}
-                    </div>
+                <div className='creatSpotDiv'>
+                    <button className="create-spot-button" type="submit">
+                        Update Spot
+                    </button>
                 </div>
-                <div className='UpdatePrice'>
-                    <div className='UpdatePriceOfPlace'>
-                        <h2>Set a base price for your spot</h2>
-                    </div>
-                    <div className="UpdateDetailsOfPriceOfPlace">
-                        <h4>Competitive pricing can help your listing stand out and rank higher
-                            in search results.</h4>
-                        $ <input className="UpdatePriceInput" type="text" value={price} placeholder="Price per night (USD)" onChange={(e) => setPrice(e.target.value)} />
-                        {issues.price && <p className='errorsValidation'>{issues.price}</p>}
-                    </div>
-                </div>
-                <button>Update Spot</button>
-            </div>
             </form>
+            </div>
         )
     } else {
         return (

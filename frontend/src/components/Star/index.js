@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 const Star = ({ filled, onClick }) => {
   return (
     <FaStar
-      color={filled ? '#ffc107' : '#e4e5e9'}
+      color={filled ? '#ffc107' : '#5A5A5A'}
       onClick={onClick}
     />
   );

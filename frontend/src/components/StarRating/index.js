@@ -15,6 +15,7 @@ const StarRating = ({ onRate }) => {
         const ratingValue = i + 1;
 
         return (
+
           <Star
             key={i}
             filled={ratingValue <= rating}
@@ -22,6 +23,7 @@ const StarRating = ({ onRate }) => {
           />
         );
       })}
+      <label className='stars'> Stars</label>
     </div>
   );
 };

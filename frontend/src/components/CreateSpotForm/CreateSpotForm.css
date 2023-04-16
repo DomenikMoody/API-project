@@ -1,0 +1,113 @@
+.errorsValidation {
+    color: red;
+    margin: 0;
+    align-content:  center;
+}
+.centeringBox{
+    display: flex;
+    justify-content: center;
+}
+.CreateForm {
+    justify-content: center;
+    margin-top: 20px;
+}
+.CreateFormcontainer{
+    width: 400px;
+}
+.CreateNewSpotForm {
+    text-align: start;
+
+}
+
+.wheres {
+    margin-bottom: 0;
+}
+
+.guess {
+    margin-top: 3px;
+    font-size: 12pt;
+}
+
+.countryContainer {
+}
+
+.countryInput {
+    width: 400px;
+}
+
+.countryDiv {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.AddressInput {
+    width: 400px;
+}
+
+.addressDiv {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.CityAndStateContainer {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 30px;
+    border-bottom: black 2px solid;
+
+}
+.CityDiv{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.CityInput{
+    width: 200px;
+}
+.StateDiv{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.theTextArea{
+    padding-bottom: 30px;
+    border-bottom: black 2px solid;
+}
+
+.thenameInput{
+    display: flex;
+    padding-bottom: 20px;
+    border-bottom: black 2px solid;
+}
+.nameInput{
+    width: 400px;
+}
+.PriceInput{
+    width: 400px;
+}
+.PhotoInput{
+    width: 400px;
+}
+.ImageUrl4{
+    padding-bottom: 30px;
+    border-bottom: black 2px solid;
+}
+
+.create-spot-button {
+    display: block;
+    text-align: center;
+    width: 100px;
+    background-color: rgb(242, 91, 94);
+    padding: 10px;
+    color: white;
+    box-shadow: 3px 3px black;
+  }
+  .creatSpotDiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+  }

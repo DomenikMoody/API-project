@@ -23,10 +23,11 @@
 
 .spotOwnerContainer {
     display: flex;
+    border-bottom: 3px black solid;
 }
 
 .SpotOwner {
-    width: 70%;
+    width: 60%;
 }
 
 .Priceandreviews {
@@ -34,15 +35,28 @@
     border: solid black 3px;
     border-radius: 20px;
     flex-wrap: wrap;
-    width: 30%;
-    justify-content: space-around;
-    padding: 15px;
+    width: 40%;
+    justify-content: space-between;
+    padding: 15px 25px;
     height: 50%;
     margin-top: 20px;
 }
 
 .price {
     display: flex;
+    padding: 10px;
+    gap: 3px
+}
+.priceStuff{
+    font-size: 18pt;
+    margin: 0;
+}
+.nightStuff{
+    align-self: center;
+}
+.night{
+    margin: 0;
+    align-self: center;
 }
 .ReserveButton{
     text-align: center;
@@ -50,10 +64,55 @@
 }
 .cssForReserveButton {
     padding: 14px;
-    width: 90%;
+    width: 100%;
     margin-bottom: 10px;
+    border: 2px solid black;
+    background-color:rgb(242, 91, 94) ;
+    box-shadow: 3px 3px black;
+    color: white;
 }
 .reviewsForReservebutton{
     display: flex;
     align-items: center;
+}
+h3{
+    font-size: 22pt;
+}
+.reviewTitlebar{
+    font-size: 25pt;
+    margin-top: 20px;
+}
+.UserfirstnameofReview{
+margin-bottom: 0;
+font-size: 16pt;
+font-weight: bold;
+}
+.userDateofReview{
+margin-top: 8px;
+margin-bottom: 0px;
+}
+.userReviewPostButton{
+margin-top: 15px;
+padding: 5px;
+width: 15%;
+border: 2px solid black;
+background-color:rgb(242, 91, 94) ;
+color: white;
+box-shadow: 3px 3px black;
+}
+
+.userdescriptionforReview{
+    margin-top: 6px;
+}
+.BeTheFirst{
+    font-size: 16pt;
+}
+.bigBox{
+    display: flex;
+    align-content: center;
+    max-width: 1000px;
+}
+.biggerBox{
+    display: flex;
+    justify-content: center;
 }

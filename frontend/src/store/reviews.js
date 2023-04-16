@@ -32,7 +32,7 @@ export const CreateReview = ({ description, rating, id }) => async (dispatch) =>
         body: JSON.stringify({ review: description, stars: rating })
     })
     if (response.ok) {
-        const data = response.json()
+        const data = await response.json()
         await dispatch(createreviews(data))
         return data
     }
@@ -56,7 +56,7 @@ export const getReviewsBySpotThunk = (spotId) => async (dispatch) => {
         return data
     }
 }
-const initialState = { review: null };
+const initialState = { review: {} };
 const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
@@ -73,10 +73,8 @@ const reviewReducer = (state = initialState, action) => {
             delete newState[action.payload]
             return newState
         case CREATE_REVIEWS:
-            newState = Object.assign({}, state.review)
-            newState[action.payload.id] = action.payload
-            return newState
-      default:
+            return {...state,...state.review,[action.payload.id]: action.payload,};
+        default:
             return state;
     }
 };
