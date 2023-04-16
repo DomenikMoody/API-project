@@ -18,7 +18,7 @@ module.exports = {
         lat: 43,
         lng: 54,
         name: 'Home Away From Home',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo. Integer in congue purus, a fringilla lorem. Aliquam iaculis id nisl viverra congue. Nunc eget massa volutpat, malesuada arcu id, consequat nibh. Maecenas metus arcu, laoreet vehicula euismod ac, fermentum vitae nulla. Nunc suscipit posuere convallis. Nunc accumsan convallis nulla, sit amet bibendum nisl rutrum sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis laoreet at sapien quis faucibus. Donec sed enim et libero cursus vehicula vitae nec elit. Pellentesque et tortor enim. Curabitur blandit tempus metus vel pulvinar. Curabitur ultrices mauris diam. Sed maximus pellentesque magna, id interdum eros dignissim vitae. Aliquam a est feugiat, rhoncus nibh eu, eleifend sem. Morbi pulvinar at ex sed dignissim.`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
         price: 100.00
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
         lat:89,
         lng:34,
         name:'Apex',
-        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo. Integer in congue purus, a fringilla lorem. Aliquam iaculis id nisl viverra congue. Nunc eget massa volutpat, malesuada arcu id, consequat nibh. Maecenas metus arcu, laoreet vehicula euismod ac, fermentum vitae nulla. Nunc suscipit posuere convallis.Nunc accumsan convallis nulla, sit amet bibendum nisl rutrum sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis laoreet at sapien quis faucibus. Donec sed enim et libero cursus vehicula vitae nec elit. Pellentesque et tortor enim. Curabitur blandit tempus metus vel pulvinar. Curabitur ultrices mauris diam. Sed maximus pellentesque magna, id interdum eros dignissim vitae. Aliquam a est feugiat, rhoncus nibh eu, eleifend sem. Morbi pulvinar at ex sed dignissim.`,
+        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo.`,
         price: 200.00
       },
       {
@@ -42,7 +42,7 @@ module.exports = {
         lat: 12,
         lng: 15,
         name: 'HOT PLACE',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo. Integer in congue purus, a fringilla lorem. Aliquam iaculis id nisl viverra congue. Nunc eget massa volutpat, malesuada arcu id, consequat nibh. Maecenas metus arcu, laoreet vehicula euismod ac, fermentum vitae nulla. Nunc suscipit posuere convallis.Nunc accumsan convallis nulla, sit amet bibendum nisl rutrum sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis laoreet at sapien quis faucibus. Donec sed enim et libero cursus vehicula vitae nec elit. Pellentesque et tortor enim. Curabitur blandit tempus metus vel pulvinar. Curabitur ultrices mauris diam. Sed maximus pellentesque magna, id interdum eros dignissim vitae. Aliquam a est feugiat, rhoncus nibh eu, eleifend sem. Morbi pulvinar at ex sed dignissim.`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo.`,
         price: 400.00
       },
       {
@@ -54,7 +54,7 @@ module.exports = {
         lat:89,
         lng:34,
         name:'Lunar',
-        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo. Integer in congue purus, a fringilla lorem. Aliquam iaculis id nisl viverra congue. Nunc eget massa volutpat, malesuada arcu id, consequat nibh. Maecenas metus arcu, laoreet vehicula euismod ac, fermentum vitae nulla. Nunc suscipit posuere convallis.Nunc accumsan convallis nulla, sit amet bibendum nisl rutrum sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis laoreet at sapien quis faucibus. Donec sed enim et libero cursus vehicula vitae nec elit. Pellentesque et tortor enim. Curabitur blandit tempus metus vel pulvinar. Curabitur ultrices mauris diam. Sed maximus pellentesque magna, id interdum eros dignissim vitae. Aliquam a est feugiat, rhoncus nibh eu, eleifend sem. Morbi pulvinar at ex sed dignissim.`,
+        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
         price: 800.00
       },
     ],{} );
