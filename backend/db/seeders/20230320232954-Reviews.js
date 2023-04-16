@@ -31,7 +31,7 @@ module.exports = {
     {
       spotId:4,
       userId:4,
-      review:"Nunc accumsan convallis nulla, sit amet bibendum nisl rutrum sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis laoreet at sapien quis faucibus. Donec sed enim et libero cursus vehicula vitae nec elit. Pellentesque et tortor enim. Curabitur blandit tempus metus vel pulvinar. Curabitur ultrices mauris diam. Sed maximus pellentesque magna, id interdum eros dignissim vitae. Aliquam a est feugiat, rhoncus nibh eu, eleifend sem. Morbi pulvinar at ex sed dignissim.",
+      review:"Nunc accumsan convallis nulla, sit amet bibendum nisl rutrum sed.",
       stars:5,
     }
     ], {});
