@@ -141,16 +141,11 @@ router.get('/', async (req, res) => {
         }
         element.numReviews = num
         let url = ""
+        element.previewImage = null
         element.SpotImages.forEach(spot => {
             if (spot.preview) {
                 url = spot.url
                 element.previewImage = url
-            }
-            if (!spot.preview) {
-                if (!element.preview) {
-                    element.previewImage = null
-                }
-
             }
         })
 
@@ -186,6 +181,7 @@ router.get('/current', requireAuth, async (req, res) => {
         ownedSpot.forEach(spot => {
             spotList.push(spot.toJSON())
         })
+        console.log("BACKEND", spotList)
         spotList.forEach(element => {
             let num = element.Reviews.length
             let sum = 0;
@@ -567,8 +563,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
             userId: user.id,
             spotId: req.params.spotId,
             review: review,
-            stars: stars
+            stars: stars,
         })
+        console.log(newReview)
 
         return res.json(newReview)
 
