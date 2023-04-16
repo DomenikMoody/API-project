@@ -18,7 +18,7 @@ module.exports = {
         lat: 43,
         lng: 54,
         name: 'Home Away From Home',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tortor felis, tincidunt a purus ac, pulvinar placerat ipsum. Nullam blandit vehicula tempor. Praesent sed eleifend felis. Aenean eu ante sodales leo cursus porta. Fusce a orci ante. Fusce feugiat eleifend pretium. Morbi tempor diam sed velit blandit faucibus.`,
         price: 100.00
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
         lat:89,
         lng:34,
         name:'Apex',
-        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo.`,
+        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tortor felis, tincidunt a purus ac, pulvinar placerat ipsum. Nullam blandit vehicula tempor. Praesent sed eleifend felis. Aenean eu ante sodales leo cursus porta. Fusce a orci ante. Fusce feugiat eleifend pretium. Morbi tempor diam sed velit blandit faucibus.`,
         price: 200.00
       },
       {
@@ -42,7 +42,7 @@ module.exports = {
         lat: 12,
         lng: 15,
         name: 'HOT PLACE',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elit id urna dictum tempor. Proin quis nisi justo.`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tortor felis, tincidunt a purus ac, pulvinar placerat ipsum. Nullam blandit vehicula tempor. Praesent sed eleifend felis. Aenean eu ante sodales leo cursus porta. Fusce a orci ante. Fusce feugiat eleifend pretium. Morbi tempor diam sed velit blandit faucibus.`,
         price: 400.00
       },
       {
@@ -54,7 +54,7 @@ module.exports = {
         lat:89,
         lng:34,
         name:'Lunar',
-        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+        description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tortor felis, tincidunt a purus ac, pulvinar placerat ipsum. Nullam blandit vehicula tempor. Praesent sed eleifend felis. Aenean eu ante sodales leo cursus porta. Fusce a orci ante. Fusce feugiat eleifend pretium. Morbi tempor diam sed velit blandit faucibus.`,
         price: 800.00
       },
     ],{} );
