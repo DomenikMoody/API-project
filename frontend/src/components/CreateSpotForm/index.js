@@ -50,11 +50,11 @@ function CreateSpotForm() {
             errors.price = "Price per night is required"
         }
         if (!photo.endsWith('.jpg')) {
-            errors.previewImage = "You must add a preview Image"
+            errors.previewImage = "You must add a .jpg preview Image"
         }
         setissues(errors)
         //------------------FOR IMAGES VALIDATION--------------------------
-        if (Object.values(issues) < 1) {
+        if (Object.values(issues).length === 0) {
             let imageArray = []
             if (photo) { imageArray.push({ url: photo, preview: true, }) }
             if (photo1) { imageArray.push({ url: photo1, preview: false, }) }
