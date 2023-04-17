@@ -3,7 +3,7 @@ import { useModal } from '../../context/Modal'
 import { useDispatch } from 'react-redux';
 import { RemoveSpot } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
-import { UserSpot } from '../../store/spots';
+import { getSpotsThunk } from '../../store/spots';
 import deletespotcss from './modal.css'
 
 function DeleteSpotModal({ prop }) {
@@ -14,7 +14,7 @@ function DeleteSpotModal({ prop }) {
 
   const handleDeleteClick = () => {
     dispatch(RemoveSpot(prop.id))
-    dispatch(UserSpot())
+    dispatch(getSpotsThunk())
     closeModal()
   };
 

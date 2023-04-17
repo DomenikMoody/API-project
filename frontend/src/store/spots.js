@@ -4,13 +4,6 @@ const USER_SPOT = "spot/getspotbyuserid";
 const REMOVE_SPOT = "spot/removespot";
 const SHOW_SPOTS = "spot/showspots";
 const GET_SPOT = "spot/solospot"
-
-const userspot = (data) => {
-    return {
-        type: USER_SPOT,
-        payload: data
-    }
-}
 const removespot = (spotId) => {
     return {
         type: REMOVE_SPOT,
@@ -59,7 +52,6 @@ export const CreateSpot = (spot, images) => async (dispatch) => {
     if (response.ok) {
         const newSpot = await response.json();
         for (let i = 0; i < images.length; i++) {
-            console.log("HERE IS YOUR IMAGES", images[i])
             await csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
