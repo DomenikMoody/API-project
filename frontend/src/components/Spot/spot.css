@@ -31,6 +31,7 @@
 }
 
 .Priceandreviews {
+    background-color: white;
     display: flex;
     border: solid black 3px;
     border-radius: 20px;

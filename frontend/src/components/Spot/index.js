@@ -53,15 +53,15 @@ function Spot() {
                     </div>
                     <div className="spotImagesContainer">
                         <div className="my-page">
-                            <img className='first-image' src={images[0] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[0]} alt="Half-sized image" />
+                            <img className='first-image' src={images[0] === undefined ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[0]} alt="Half-sized image" />
                             <div className='quadrent'>
                                 <div className='firstColumn'>
-                                    <img className='remaining-images' src={images[1] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[1]} alt="Quad-sized image" />
-                                    <img className='remaining-images' src={images[2] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[2]} alt="Quad-sized image" />
+                                    <img className='remaining-images' src={images[1] === undefined ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[1]} alt="Quad-sized image" />
+                                    <img className='remaining-images' src={images[2] === undefined ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[2]} alt="Quad-sized image" />
                                 </div>
                                 <div className="secondColumn">
-                                    <img className='remaining-images' src={images[3] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[3]} alt="Quad-sized image" />
-                                    <img className='remaining-images' src={images[4] === null ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[4]} alt="Quad-sized image" />
+                                    <img className='remaining-images' src={images[3] === undefined ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[3]} alt="Quad-sized image" />
+                                    <img className='remaining-images' src={images[4] === undefined ? "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" : images[4]} alt="Quad-sized image" />
                                 </div>
                             </div>
 

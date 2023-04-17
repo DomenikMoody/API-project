@@ -20,7 +20,7 @@ function UpdateForm() {
     const [description, setDescription] = useState(localStorage.getItem('description') || soloSpot[spotId]?.description);
     const [name, setName] = useState(localStorage.getItem('name') || soloSpot[spotId]?.name);
     const [price, setPrice] = useState(localStorage.getItem('price') || soloSpot[spotId]?.price);
-    const [issues, setissues] = useState({})
+    const [issues, setIssues] = useState({})
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -76,11 +76,12 @@ function UpdateForm() {
         if (!description || description.length < 30) {
             errors.description = "Description is required"
         }
-        if (+price !== NaN && +price < 1) {
+        if (isNaN(+price)) {
             errors.price = "Price per night is required"
         }
-        setissues(errors)
-        if (Object.values(issues) < 1) {
+        setIssues(errors)
+
+        if (Object.values(errors).length === 0) {
             const editSpot = await dispatch(EditSpot({id:spotId, address, city, state, country, lat: latitude, lng: longitude, name, description, price }))
             history.push(`/spots/${editSpot.id}`)
         }
@@ -100,7 +101,7 @@ function UpdateForm() {
             <div className='centeringBox'>
             <form className="CreateForm" onSubmit={handleUpdate}>
                 <div className='CreateFormcontainer'>
-                    <h1 className='CreateNewSpotForm'>Create a new spot</h1>
+                    <h1 className='CreateNewSpotForm'>Update your spot</h1>
                     <h2 className="wheres">{`Where's your place located?`}</h2>
                     <h3 className='guess'>Guests will only get your exact address once they booked a reservation.</h3>
 
@@ -180,8 +181,8 @@ function UpdateForm() {
                                 in search results.</h4>
                             <div className='thenameInput'>
                                 $ <input className="PriceInput" type="text" value={price} placeholder="Price per night (USD)" onChange={(e) => setPrice(e.target.value)} />
-                                {issues.price && <p className='errorsValidation'>{issues.price}</p>}
                             </div>
+                                {issues.price && <div className='errorsValidation'>{issues.price}</div>}
                         </div>
                     </div>
 

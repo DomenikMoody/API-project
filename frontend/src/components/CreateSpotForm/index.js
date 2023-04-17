@@ -15,15 +15,22 @@ function CreateSpotForm() {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [photo, setPhoto] = useState('')
-    const [photo1, setPhoto1] = useState('')
-    const [photo2, setPhoto2] = useState('')
-    const [photo3, setPhoto3] = useState('')
-    const [photo4, setPhoto4] = useState('')
+    const [photo1, setPhoto1] = useState(null)
+    const [photo2, setPhoto2] = useState(null)
+    const [photo3, setPhoto3] = useState(null)
+    const [photo4, setPhoto4] = useState(null)
     const [issues, setissues] = useState({})
+    //-------------------------------HelperFunction Validation-----------------
+    function validatephotoName(photoName) {
+        return photoName.endsWith('.jpg') ||
+               photoName.endsWith('.png') ||
+               photoName.endsWith('.jpeg');
+      }
 
     //--------------------------------validations-------------------------
     const HandleSubmit = async (e) => {
         e.preventDefault()
+        console.log("HERE IS YOUR PRICE", +price)
         let errors = {}
         if (!address) {
             errors.address = "Street address is required"
@@ -46,18 +53,19 @@ function CreateSpotForm() {
         if (!description || description.length < 30) {
             errors.description = "Description is required"
         }
-        if (+price !== NaN && +price < 1) {
+        if (isNaN(+price)) {
             errors.price = "Price per night is required"
         }
-        if (!photo.endsWith('.jpg')) {
-            errors.previewImage = "You must add a .jpg preview Image"
+        if (validatephotoName(photo) === false) {
+            errors.previewImage = "You must add a .jpg, .png, or .jpeg preview Image"
         }
         setissues(errors)
         //------------------FOR IMAGES VALIDATION--------------------------
-        if (Object.values(issues).length === 0) {
+        if (Object.values(errors).length === 0) {
             let imageArray = []
             if (photo) { imageArray.push({ url: photo, preview: true, }) }
             if (photo1) { imageArray.push({ url: photo1, preview: false, }) }
+            console.log( "HERE IS photo1", photo1)
             if (photo2) { imageArray.push({ url: photo2, preview: false, }) }
             if (photo3) { imageArray.push({ url: photo3, preview: false, }) }
             if (photo4) { imageArray.push({ url: photo4, preview: false, }) }

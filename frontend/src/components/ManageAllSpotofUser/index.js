@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-import { UserSpot } from '../../store/spots';
+import { getSpotsThunk } from '../../store/spots';
 import DeleteSpotModal from '../DeleteSpotModal';
 import './ManageAllSpotofUser.css';
 import OpenModalButton from '../OpenModalButton'
@@ -11,14 +11,15 @@ import UpdateForm from '../UpdateUserSpot';
 
 function ManageAllSpotofUser() {
     const sessionUser = useSelector(state => state.session.user);
-    const userSpot = useSelector(state => state.userSpots);
-    const userSpotArray = Object.values(userSpot);
+    const allSpots = useSelector(state => state.spots)
+    const array = Object.values(allSpots);
+    const userSpotArray = array.filter(spot=>spot?.ownerId === sessionUser.id)
     console.log("HERE IS THE ARRAY", userSpotArray)
     const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(UserSpot());
+        dispatch(getSpotsThunk());
     }, [dispatch]);
 
 

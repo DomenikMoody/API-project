@@ -30,7 +30,6 @@ const solospot = (data) => {
     }
 }
 export const EditSpot = (spot) => async (dispatch) => {
-    console.log("JUST GOT IN THUNK",spot)
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -47,16 +46,6 @@ export const RemoveSpot = (spotId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         await dispatch(removespot(spotId))
-        return data
-    }
-}
-export const UserSpot = () => async (dispatch) => {
-    console.log('FROM INSIDE THE THUNK')
-    const response = await csrfFetch('/api/spots/current')
-    console.log('THE RESPONSE============>', response)
-    if (response.ok) {
-        const data = await response.json()
-        await dispatch(userspot(data))
         return data
     }
 }
@@ -99,7 +88,7 @@ export const getSpotsThunk = () => async (dispatch) => {
     }
 
 }
-const initialState = { spots: null, singleSpot: null, userSpots: null };
+const initialState = { spots: null, singleSpot: null };
 const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
@@ -110,10 +99,6 @@ const spotReducer = (state = initialState, action) => {
         case GET_SPOT:
             newState = Object.assign({}, state.singleSpot)
             newState[action.payload.id] = action.payload
-            return newState
-        case USER_SPOT:
-            newState = Object.assign({}, state.userSpots)
-            action.payload.Spots.forEach(spot => { newState[spot.id] = spot })
             return newState
         case REMOVE_SPOT:
             newState = Object.assign({}, state)

@@ -10,7 +10,6 @@ const rootReducer = combineReducers({
   spots: spotReducer,
   singleSpot:spotReducer,
   review: reviewReducer,
-  userSpots: spotReducer
 });
 
 let enhancer;
