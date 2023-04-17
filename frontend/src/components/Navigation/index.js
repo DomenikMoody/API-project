@@ -12,11 +12,12 @@ function Navigation({ isLoaded }) {
     <nav>
       <div className='navbar'>
         <div className='logoHome'>
-          <NavLink exact to="/"><img src="/ParadisLogo.JPG" className='logo'></img></NavLink>
+          <NavLink exact to="/"><img src="/paradisAbode.JPG" className='logo'></img>
+          </NavLink>
         </div>
         <div className='ProfileButton'>
           <div className='CreateaNewSpotDiv'>
-        {sessionUser && <NavLink to="/spots/new">Create a New Spot</NavLink>}
+            {sessionUser && <NavLink to="/spots/new">Create a New Spot</NavLink>}
           </div>
           {isLoaded && (
             <ProfileButton user={sessionUser} />

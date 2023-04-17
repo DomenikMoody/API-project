@@ -2,9 +2,9 @@
     visibility: hidden;
 }
 .logo {
-   height: 15%;
-   width: 20%;
-   border: 1px white solid;
+   height: auto;
+   width: 40%;
+   border: 3px black solid;
    border-radius: 50px;
 }
 .navbar {
