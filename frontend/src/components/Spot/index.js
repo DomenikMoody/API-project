@@ -82,7 +82,7 @@ function Spot() {
                                 </div>
                             </div>
                             <div className='reviewsForReservebutton'>
-                                <i class="fa-solid fa-star"></i>{soloSpot?.numReviews === 0 ? "New" : `${soloSpot?.avgStarRating || "0.0"} · ${soloSpot?.numReviews || "0"} reviews`}
+                                <i class="fa-solid fa-star"></i>{soloSpot?.numReviews === 0 ? "New" : `${soloSpot?.avgStarRating || "0.0"} · ${soloSpot?.numReviews} ${soloSpot?.numReviews > 1 ? "Reviews" : "Review"}`}
                             </div>
                             <div className='ReserveButton'>
                                 <button
