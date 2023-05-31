@@ -14,7 +14,6 @@ function ManageAllSpotofUser() {
     const allSpots = useSelector(state => state.spots)
     const array = Object.values(allSpots);
     const userSpotArray = array.filter(spot=>spot?.ownerId === sessionUser.id)
-    console.log("HERE IS THE ARRAY", userSpotArray)
     const history = useHistory();
     const dispatch = useDispatch();
 
