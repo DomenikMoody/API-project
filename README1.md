@@ -4,8 +4,7 @@ Welcome to Paradise Abode, the ultimate destination for your dream vacation! Our
 Check out [Paradise Abode](https://api-project-base.onrender.com/)
 
 ## Index
-[MVP Feature List](https://github.com/DomenikMoody/API-project/wiki/Feature-List) | [Database Schema](https://github.com/DomenikMoody/API-project/wiki/schema) | [User Stories](https://github.com/DomenikMoody/API-project/wiki/User-Stories) | [Wire Frames](https://github.com/DomenikMoody/CapstoneProject/wiki/WireFrame) |
-
+[MVP Feature List](https://github.com/DomenikMoody/API-project/wiki/Feature-List) | [Database Schema](https://github.com/DomenikMoody/API-project/wiki/schema) | [User Stories](https://github.com/DomenikMoody/API-project/wiki/User-Stories) | [Wire Frames](https://github.com/DomenikMoody/CapstoneProject/wiki/WireFrame) | [Endpoints](https://github.com/DomenikMoody/API-project/wiki/EndPoints)
 ***
 
 ## Technologies Used
