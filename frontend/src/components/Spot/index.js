@@ -8,11 +8,16 @@ import spot from "./spot.css"
 import OpenModalButton from '../OpenModalButton'
 import DeleteReviewModal from '../DeleteReviewModal';
 import CreateReviewModal from '../CreateReviewModal';
+import { allbookingofSpot } from '../../store/booking';
+import BookASpot from '../BookASpot';
+import ErrorScreen from '../ErrorScreen';
 
 function Spot() {
     const dispatch = useDispatch()
     const { spotId } = useParams();
+    console.log(spotId, "HERE IS THE SPOT ID")
     const spot = useSelector(state => state.singleSpot)
+    console.log(spot, "HERE IS THE SPOT")
     const sessionUser = useSelector(state => state.session.user);
     const allreviews = useSelector(state => state.review)
     const reviews = Object.values(allreviews)
@@ -40,7 +45,8 @@ function Spot() {
         dispatch(getReviewsBySpotThunk(spotId))
     }, [dispatch, reviews.length])
     //-------------------------OUR RETURN---------------------------------
-    if (!spot) return null
+    if (!spot) return null;
+    if (!soloSpot) return <ErrorScreen />;
     return (
         <div className='biggerBox'>
             <div className='bigBox'>
@@ -85,11 +91,15 @@ function Spot() {
                                 <i class="fa-solid fa-star"></i>{soloSpot?.numReviews === 0 ? "New" : `${soloSpot?.avgStarRating || "0.0"} · ${soloSpot?.numReviews} ${soloSpot?.numReviews > 1 ? "Reviews" : "Review"}`}
                             </div>
                             <div className='ReserveButton'>
-                                <button
-                                    className='cssForReserveButton'
-                                    onClick={reserveButton}
-                                >
-                                    Reserve</button>
+                                {sessionUser === null ?
+                                    <button
+                                        className='cssForReserveButton'
+                                        onClick={reserveButton}
+                                    >
+                                        Reserve</button> :
+
+                                    <OpenModalButton className="cssForReserveButton" buttonText="Reserve" modalComponent={<BookASpot prop={soloSpot} />} />
+                                }
                             </div>
                         </div>
                     </div>

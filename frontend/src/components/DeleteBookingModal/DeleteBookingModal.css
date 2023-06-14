@@ -1,0 +1,7 @@
+.buttonsforDeleteModal{
+    display: flex;
+    justify-content: space-between;
+}
+.bookingDeleteStuff{
+    margin: 40px;
+}

@@ -13,7 +13,7 @@ function AllSpot() {
     dispatch(getSpotsThunk())
   }, [dispatch])
   return (
-    <div className='allspotbiggerBox'>
+
       <div className='allspotbigbox'>
         <div className='eachSpotContainer'>
           {Object.values(allSpots).length > 0 && Object.values(allSpots).map(spot =>
@@ -38,7 +38,7 @@ function AllSpot() {
         </div>
 
       </div>
-    </div>
+
   );
 }
 

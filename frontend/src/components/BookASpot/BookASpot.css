@@ -1,0 +1,11 @@
+.formforbooking{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px;
+}
+.bookbtn{
+    background-color: rgb(242, 91, 94);
+    color: white;
+}
+

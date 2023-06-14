@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import spotReducer from "./spots";
 import reviewReducer from "./reviews";
+import bookingReducer from "./booking";
 
 const rootReducer = combineReducers({
   // add reducer functions here
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   spots: spotReducer,
   singleSpot:spotReducer,
   review: reviewReducer,
+  booking: bookingReducer
 });
 
 let enhancer;

@@ -1,9 +1,10 @@
 .ManageYourSpotsContainer{
     display: flex;
     flex-direction: column;
-    max-width: 1000px;
+    
     flex-basis: 25%;
-    padding: 20px
+    padding: 20px;
+    margin: 10px auto;
 }
 .ManageYourSpots {
     margin-bottom: 0;
@@ -79,3 +80,26 @@
     border-radius: 20px;
     color:white
   }
+  table {
+    width: 100%; /* Set table width to 100% */
+    margin: 0; /* Remove default margin */
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+  .ManageYourSpots {
+    margin-bottom: 20px;
+  }
+.boxwithbtns{
+  display: flex;
+  justify-content: space-between;
+}

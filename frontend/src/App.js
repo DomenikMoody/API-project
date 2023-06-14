@@ -8,7 +8,8 @@ import Spot from "./components/Spot"
 import CreateSpotForm from "./components/CreateSpotForm";
 import ManageAllSpotofUser from "./components/ManageAllSpotofUser";
 import UpdateForm from "./components/UpdateUserSpot";
-
+import SearchResults from "./components/SearchResults";
+import ErrorScreen from "./components/ErrorScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,10 +24,12 @@ function App() {
       {isLoaded &&
       <Switch>
         <Route exact path="/"><AllSpot /></Route>
+        <Route exact path="/search/:search"><SearchResults /></Route>
         <Route exact path="/spots/new"><CreateSpotForm /></Route>
         <Route exact path="/spots/current"><ManageAllSpotofUser /></Route>
         <Route exact path="/spots/:spotId"><Spot /></Route>
         <Route exact path="/spots/:spotId/edit"><UpdateForm /></Route>
+        <Route exact path="*"><ErrorScreen /></Route>
       </Switch>}
 
     </div>
